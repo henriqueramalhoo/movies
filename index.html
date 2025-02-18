@@ -118,97 +118,40 @@
     <script>
         // Lista de filmes com seus IDs do IMDb
         const filmes = {
-            "10 Coisas que Eu Odeio em Você/10 Things I Hate About You": "tt0147800",
-            "12 Homens e Uma Sentença/12 Angry Men": "tt0050083",
-            "A Bela e a Fera/Beauty and the Beast": "tt0101414",
-            "A Caça-Fantasmas/The Ghostbusters": "tt0087332",
-            "A Chegada/Arrival": "tt2543164",
-            "A Fuga das Galinhas/Chicken Run": "tt0234215",
-            "A Guerra dos Tronos/Game of Thrones": "tt0944947",
-            "A Lista de Schindler/Schindler's List": "tt0108052",
-            "A Noite dos Mortos-Vivos/Night of the Living Dead": "tt0063350",
-            "A Origem/Inception": "tt1375666",
-            "A Rede Social/The Social Network": "tt1285016",
-            "A Vida é Bela/La Vita è Bella": "tt0211915",
-            "A Viagem de Chihiro/Spirited Away": "tt0245429",
-            "A Vingança de Um Homem: O Último Desejo/The Last Duel": "tt0499471",
-            "Aliens: O Resgate/Aliens": "tt0090605",
-            "Amnésia/Memento": "tt0209144",
-            "Apocalypse Now/Apocalypse Now": "tt0078788",
-            "Assassin's Creed/Assassin's Creed": "tt2094766",
-            "Avatar/Avatar": "tt0499549",
-            "Avengers: Infinity War/Avengers: Infinity War": "tt4154756",
-            "Avengers: Ultimato/Avengers: Endgame": "tt1838556",
-            "Batman Begins/Batman Begins": "tt0372784",
-            "Batman v Superman: A Origem da Justiça/Batman v Superman: Dawn of Justice": "tt2975590",
-            "Batman: O Cavaleiro das Trevas/The Dark Knight": "tt0468569",
-            "Batman: O Cavaleiro das Trevas Ressurge/The Dark Knight Rises": "tt1345836",
-            "Big Hero 6/Big Hero 6": "tt2245084",
-            "Birdman/Birdman": "tt2562232",
-            "Blade Runner 2049/Blade Runner 2049": "tt1856101",
-            "Blade Runner/Blade Runner": "tt0083658",
-            "Branca de Neve e os Sete Anões/Snow White and the Seven Dwarfs": "tt0029583",
-            "Capitão América: O Primeiro Vingador/Captain America: The First Avenger": "tt0458339",
-            "Capitão Marvel/Captain Marvel": "tt3501632",
-            "Casablanca/Casablanca": "tt0034583",
-            "Cidade de Deus/City of God": "tt0317248",
-            "Clube da Luta/Fight Club": "tt0137523",
-            "Clube de Compras Dallas/Dallas Buyers Club": "tt0790636",
-            "Coraline e o Mundo Secreto/Coraline": "tt0327597",
-            "Creed II/Creed II": "tt7113462",
-            "Deadpool 2/Deadpool 2": "tt5463162",
-            "Deadpool/Deadpool": "tt1431045",
-            "De Volta para o Futuro/Back to the Future": "tt0088763",
-            "Dois Caras Legais/The Nice Guys": "tt3799694",
-            "Donnie Brasco/Donnie Brasco": "tt0119008",
-            "Donnie Darko/Donnie Darko": "tt0246578",
-            "Drácula/Dracula": "tt0101698",
-            "E.T. – O Extraterrestre/E.T. the Extra-Terrestrial": "tt0083866",
-            "Elefante/Elephant": "tt0366826",
-            "Era uma vez em Hollywood/Once Upon a Time in Hollywood": "tt7131622",
-            "Ex Machina/Ex Machina": "tt0470752",
-            "Finding Dory/Procurando Dory": "tt2277860",
-            "Forrest Gump/Forrest Gump": "tt0109830",
-            "Frida/Frida": "tt0120679",
-            "Frozen - Uma Aventura Congelante/Frozen": "tt2294629",
-            "Frozen 2/Frozen II": "tt4520988",
-            "Gladiador/Gladiator": "tt0172495",
-            "Godzilla/Godzilla": "tt0831387",
-            "Guardians of the Galaxy/Guardiões da Galáxia": "tt2015381",
-            "Guardians of the Galaxy Vol. 2/Guardians of the Galaxy Vol. 2": "tt3896198",
-            "Harry Potter e a Câmara Secreta/Harry Potter and the Chamber of Secrets": "tt0304141",
-            "Harry Potter e a Ordem da Fênix/Harry Potter and the Order of the Phoenix": "tt0373889",
-            "Harry Potter e a Pedra Filosofal/Harry Potter and the Sorcerer's Stone": "tt0241527",
-            "Harry Potter e as Relíquias da Morte – Parte 1/Harry Potter and the Deathly Hallows – Part 1": "tt0926084",
-            "Harry Potter e as Relíquias da Morte – Parte 2/Harry Potter and the Deathly Hallows – Part 2": "tt1201607",
-            "Harry Potter e o Cálice de Fogo/Harry Potter and the Goblet of Fire": "tt0330373",
-            "Harry Potter e o Enigma do Príncipe/Harry Potter and the Half-Blood Prince": "tt0417741",
-            "Harry Potter e o Prisioneiro de Azkaban/Harry Potter and the Prisoner of Azkaban": "tt0304141",
-            "Her/Her": "tt1798709",
-            "Homem de Ferro 3/Iron Man 3": "tt1300854",
-            "Homem-Aranha: De Volta ao Lar/Spider-Man: Homecoming": "tt2250912",
-            "Homem-Aranha: Sem Volta Para Casa/Spider-Man: No Way Home": "tt10872600"
+            "O Grande Gatsby/The Great Gatsby": "tt1343092",
+
         };
 
         function pesquisar() {
-            let pesquisa = document.getElementById("pesquisa").value.toLowerCase();
-            let resultado = document.getElementById("resultado");
-
-            // Limpar resultado anterior
+            const pesquisa = document.getElementById("pesquisa").value.trim();
+            const resultado = document.getElementById("resultado");
             resultado.innerHTML = "";
 
-            for (let filme in filmes) {
-                if (filme.toLowerCase().includes(pesquisa)) {
-                    let link = `https://www.imdb.com/title/${filmes[filme]}/`;
-                    let elemento = document.createElement("div");
-                    elemento.innerHTML = `<a href="${link}" target="_blank">${filme}</a>`;
-                    resultado.appendChild(elemento);
+            let encontrado = false;
+
+            // Procurar nos filmes
+            for (const [nome, id] of Object.entries(filmes)) {
+                if (nome.toLowerCase().includes(pesquisa.toLowerCase())) {
+                    resultado.innerHTML += `<p>Filme: ${nome} - <a href="serversfilmes.html?filme=${id}">Assistir</a></p>`;
+                    encontrado = true;
                 }
             }
 
-            if (resultado.innerHTML === "") {
-                resultado.innerHTML = "Nenhum filme encontrado.";
+            if (!encontrado) {
+                resultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
             }
+        }
+
+        function capturarFilmes() {
+            let filmeID = document.getElementById("filmes").value;
+            window.location.href = `serversfilmes.html?filme=${filmeID}`;
+        }
+
+        function capturarSeries() {
+            let serieID = document.getElementById("series").value;
+            let ep = document.getElementById("ep").value;
+            let season = document.getElementById("season").value;
+            window.location.href = `serverseries.html?serie=${serieID}&ep=${ep}&season=${season}`;
         }
     </script>
 </body>
