@@ -5,63 +5,347 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesquisar Filmes</title>
     <style>
-        /* (mesmo estilo que tu tens, mantido para consistência) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #121212;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e50914;
+        }
+
+        p {
+            font-size: 1em;
+            margin-bottom: 30px;
+            color: #aaa;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 250px;
+            border: 1px solid #333;
+            background-color: #333;
+            color: white;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        input::placeholder {
+            color: #888;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #e50914;
+            color: white;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #b20710;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #aaa;
+            font-size: 0.8em;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        #resultado a {
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        #resultado a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
     <h2>Pesquisar Filmes</h2>
     <p>Digite o nome do filme que deseja assistir</p>
-
+    
     <label for="pesquisa">Pesquisar:</label>
     <input type="text" id="pesquisa" placeholder="Digite o nome do filme">
-    <button onclick="pesquisar()">Buscar</button><br>
-
+    <button onclick="pesquisar()">Buscar</button> <br>
+    
     <div id="resultado"></div>
     
     <button class="back-button" onclick="window.history.back()">Voltar</button>
 
     <script>
-        const apiKey = 'SUA_CHAVE_API_DO_TMDB';  // Substitui com a tua chave da TMDb
-        const baseUrl = 'https://api.themoviedb.org/3/search/movie';  // URL da API para pesquisa de filmes
+        // Lista de filmes com seus IDs do IMDb
+        const filmes = {
+            "O Grande Gatsby/The Great Gatsby": "tt1343092",
+            "Uma Mente Brilhante/A Beautiful Mind": "tt0268978",
+            "Mad Max: Estrada da Fúria/Mad Max: Fury Road": "tt1392190",
+            "Star Wars: Episódio I - A Ameaça Fantasma/Star Wars: Episode I - The Phantom Menace": "tt0120915",
+            "O Lobo de Wall Street/The Wolf of Wall Street": "tt0993846",
+            "Os Vingadores: A Era de Ultron/Avengers: Age of Ultron": "tt2395427",
+            "A Vida é Bela/La Vita è Bella": "tt0211915",
+            "Avatar/Avatar": "tt0499549",
+            "Frida/Frida": "tt0120679",
+            "Indiana Jones e os Caçadores da Arca Perdida/Indiana Jones and the Raiders of the Lost Ark": "tt0082971",
+            "Jurassic World/Jurassic World": "tt0369610",
+            "Birdman/Birdman": "tt2562232",
+            "Matrix/The Matrix": "tt0133093",
+            "Deadpool 2/Deadpool 2": "tt5463162",
+            "Gladiador/Gladiator": "tt0172495",
+            "Coraline e o Mundo Secreto/Coraline": "tt0327597",
+            "O Rei Leão/The Lion King": "tt0110357",
+            "Aliens: O Resgate/Aliens": "tt0090605",
+            "Mulher-Maravilha/Wonder Woman": "tt0451279",
+            "Os Vingadores/Avengers": "tt0848228",
+            "Blade Runner 2049/Blade Runner 2049": "tt1856101",
+            "O Cavaleiro das Trevas/The Dark Knight": "tt0468569",
+            "O Quarto de Jack/Room": "tt3170832",
+            "A Origem/Inception": "tt1375666",
+            "O Resgate do Soldado Ryan/Saving Private Ryan": "tt0120815",
+            "O Pianista/The Pianist": "tt0253474",
+            "Se7en/Se7en": "tt0114369",
+            "A Lista de Schindler/Schindler's List": "tt0108052",
+            "Terminator 2: O Julgamento Final/Terminator 2: Judgment Day": "tt0103064",
+            "Clube da Luta/Fight Club": "tt0137523",
+            "Harry Potter e a Pedra Filosofal/Harry Potter and the Sorcerer's Stone": "tt0241527",
+            "Shutter Island/Shutter Island": "tt1130884",
+            "Vingadores: Ultimato/Avengers: Endgame": "tt1838556",
+            "Casablanca/Casablanca": "tt0034583",
+            "O Exorcista/The Exorcist": "tt0070047",
+            "Zootopia/Zootopia": "tt5034838",
+            "Batman Begins/Batman Begins": "tt0372784",
+            "Piratas do Caribe: A Maldição do Pérola Negra/Pirates of the Caribbean: The Curse of the Black Pearl": "tt0325980",
+            "A Bela e a Fera/Beauty and the Beast": "tt0101414",
+            "O Senhor dos Anéis: As Duas Torres/The Lord of the Rings: The Two Towers": "tt0167261",
+            "Um Sonho de Liberdade/The Shawshank Redemption": "tt0111161",
+            "Os Caça-Fantasmas/Ghostbusters": "tt0087332",
+            "Trainspotting/Trainspotting": "tt0117951",
+            "Whiplash: Em Busca da Perfeição/Whiplash": "tt2582802",
+            "Os Incríveis/The Incredibles": "tt0317705",
+            "Star Wars: Episódio VI - O Retorno de Jedi/Star Wars: Episode VI - Return of the Jedi": "tt0086190",
+            "Perdido em Marte/The Martian": "tt3659388",
+            "Avengers: Infinity War/Avengers: Infinity War": "tt4154756",
+            "Donnie Darko/Donnie Darko": "tt0246578",
+            "O Grande Lebowski/The Big Lebowski": "tt0118715",
+            "Cidade de Deus/City of God": "tt0317248",
+            "Blade Runner/Blade Runner": "tt0083658",
+            "Os Suspeitos/The Usual Suspects": "tt0114814",
+            "Os Intocáveis/The Untouchables": "tt0094226",
+            "Os Goonies/The Goonies": "tt0089218",
+            "Logan/Logan": "tt3315342",
+            "Pantera Negra/Black Panther": "tt1825683",
+            "Deadpool/Deadpool": "tt1431045",
+            "O Senhor dos Anéis: O Retorno do Rei/The Lord of the Rings: The Return of the King": "tt0167260",
+            "Her/Her": "tt1798709",
+            "O Grande Hotel Budapeste/The Grand Budapest Hotel": "tt2278388",
+            "Amnésia/Memento": "tt0209144",
+            "Os Infiltrados/The Departed": "tt0407887",
+            "O Labirinto do Fauno/Pan's Labyrinth": "tt0457430",
+            "A Viagem de Chihiro/Spirited Away": "tt0245429",
+            "Ex Machina/Ex Machina": "tt0470752",
+            "O Gato de Botas/Puss in Boots": "tt0448694",
+            "Donnie Brasco/Donnie Brasco": "tt0119008",
+            "Clube de Compras Dallas/Dallas Buyers Club": "tt0790636",
+            "Zero Dark Thirty/Zero Dark Thirty": "tt1790885",
+            "Guardians of the Galaxy/Guardiões da Galáxia": "tt2015381",
+            "Requiem for a Dream/Requiem for a Dream": "tt0180093",
+            "Shazam/Shazam!": "tt0448115",
+            "O Aviador/The Aviator": "tt0338751",
+            "Rei Arthur/King Arthur": "tt0349683",
+            "Superbad/Adolescente em Apuros/Superbad": "tt0829482",
+            "Kingsman: O Círculo de Ouro/Kingsman: The Golden Circle": "tt4649466",
+            "O Jogo da Imitação/The Imitation Game": "tt2713180",
+            "Star Wars: Os Últimos Jedi/Star Wars: The Last Jedi": "tt2527336",
+            "Spider-Man: No Way Home/Spider-Man: No Way Home": "tt10872600",
+            "Shrek/Shrek": "tt0126029",
+            "Harry Potter e as Relíquias da Morte – Parte 1/Harry Potter and the Deathly Hallows – Part 1": "tt0926084",
+            "Jurassic Park/Jurassic Park": "tt0107290",
+            "Frozen/Frozen": "tt2294629",
+            "Procurando Nemo/Finding Nemo": "tt0266543",
+            "Star Wars: O Império Contra-Ataca/Star Wars: Episode V - The Empire Strikes Back": "tt0080684",
+            "O Silêncio dos Inocentes/The Silence of the Lambs": "tt0102926",
+            "A Rede Social/The Social Network": "tt1285016",
+            "King Kong/King Kong": "tt0371746",
+            "Matrix Reloaded/The Matrix Reloaded": "tt0234215",
+            "De Volta para o Futuro/Back to the Future": "tt0088763",
+            "Vingadores: O Ultimato/Avengers: Endgame": "tt1838556",
+            "Frozen 2/Frozen II": "tt4520988",
+            "Alien/Aliens": "tt0090605",
+            "Spider-Man/Spider-Man": "tt0145487",
+            "Inside Out/Divertida Mente/Inside Out": "tt2096673",
+            "Toy Story 3/Toy Story 3": "tt0435761",
+            "Jumanji: Bem-vindo à Selva/Jumanji: Welcome to the Jungle": "tt4196776",
+            "Up - Altas Aventuras/Up": "tt1046186",
+            "O Cavaleiro das Trevas Ressurge/The Dark Knight Rises": "tt1345836",
+            "Jurassic Park: O Mundo Perdido/The Lost World: Jurassic Park": "tt0119567",
+            "Madagascar/Madagascar": "tt0351283",
+            "Finding Dory/Procurando Dory": "tt2277860",
+            "Star Wars: Episódio IX - A Ascensão Skywalker/Star Wars: Episode IX - The Rise of Skywalker": "tt2527336",
+            "10 Coisas que Eu Odeio em Você/10 Things I Hate About You": "tt0147800",
+            "Superman: O Retorno/Superman Returns": "tt0348150",
+            "Truman Show/The Truman Show": "tt0120382",
+            "Creed II/Creed II": "tt7113462",
+            "John Wick: De Volta ao Jogo/John Wick": "tt2911666",
+            "Spider-Man 2/Spider-Man 2": "tt0316654",
+            "O Poderoso Chefão/The Godfather": "tt0068646",
+            "Indiana Jones e a Última Cruzada/Indiana Jones and the Last Crusade": "tt0097576",
+            "O Hobbit: Uma Jornada Inesperada/The Hobbit: An Unexpected Journey": "tt0903624",
+            "Star Wars: Episódio II - O Ataque dos Clones/Star Wars: Episode II - Attack of the Clones": "tt0121765",
+            "Star Wars: Episódio III - A Vingança dos Sith/Star Wars: Episode III - Revenge of the Sith": "tt0121766",
+            "Os Incríveis 2/The Incredibles 2": "tt3606756",
+            "Percy Jackson e o Ladrão de Raios/Percy Jackson & The Olympians: The Lightning Thief": "tt0814255",
+            "Harry Potter e as Relíquias da Morte – Parte 2/Harry Potter and the Deathly Hallows – Part 2": "tt1201607",
+            "Transformers/Transformers": "tt0418279",
+            "Toy Story 4/Toy Story 4": "tt1979376",
+            "Assassin's Creed/Assassin's Creed": "tt2094766",
+            "Thor: Ragnarok/Thor: Ragnarok": "tt3501632",
+            "Toy Story/Toy Story": "tt0114709",
+            "Shrek 2/Shrek 2": "tt0298148",
+            "Guardiões da Galáxia Vol. 2/Guardians of the Galaxy Vol. 2": "tt3896198",
+            "X-Men: Dias de um Futuro Esquecido/X-Men: Days of Future Past": "tt1877832",
+            "Madagascar 3: Os Procurados/Madagascar 3: Europe's Most Wanted": "tt1278340",
+            "Batman v Superman: A Origem da Justiça/Batman v Superman: Dawn of Justice": "tt2975590",
+            "Drácula/Dracula": "tt0101698",
+            "Star Wars: O Despertar da Força/Star Wars: The Force Awakens": "tt2488496",
+            "Big Hero 6/Big Hero 6": "tt2245084",
+            "Piratas do Caribe: O Baú da Morte/Pirates of the Caribbean: Dead Man's Chest": "tt0383574",
+            "Piratas do Caribe: No Fim do Mundo/Pirates of the Caribbean: At World's End": "tt0926084",
+            "A Caça-Fantasmas/The Ghostbusters": "tt0087332",
+            "X-Men: O Conflito Final/X-Men: The Last Stand": "tt0376994",
+            "Capitão Marvel/Captain Marvel": "tt3501632",
+            "O Estranho Mundo de Jack/The Nightmare Before Christmas": "tt0107688",
+            "A Fuga das Galinhas/Chicken Run": "tt0234215",
+            "Jurassic World: Reino Ameaçado/Jurassic World: Fallen Kingdom": "tt4881806",
+            "Moana: Um Mar de Aventuras/Moana": "tt3521164",
+            "O Exterminador do Futuro/Terminator": "tt0088247",
+            "O Homem de Ferro/Iron Man": "tt0371746",
+            "Homem-Aranha: No Aranhaverso/Spider-Man: Into the Spider-Verse": "tt4633694",
+            "Kill Bill: Volume 1/Kill Bill: Vol. 1": "tt0266697",
+            "Kill Bill: Volume 2/Kill Bill: Vol. 2": "tt0378194",
+            "Branca de Neve e os Sete Anões/Snow White and the Seven Dwarfs": "tt0029583",
+            "Superman: O Filme/Superman: The Movie": "tt0078346",
+            "Shrek 3/Shrek the Third": "tt0413267",
+            "Wall-E/Wall-E": "tt0910970",
+            "Toy Story 2/Toy Story 2": "tt0120363",
+            "Homem de Ferro 3/Iron Man 3": "tt1300854",
+            "Senhor dos Anéis: A Sociedade do Anel/The Lord of the Rings: The Fellowship of the Ring": "tt0120737",
+            "Godzilla/Godzilla": "tt0831387",
+            "Transformers: A Era da Extinção/Transformers: Age of Extinction": "tt3464902",
+            "Minions/Minions": "tt2294629",
+            "Jumanji/Jumanji": "tt0113497",
+            "Monstros S.A./Monsters, Inc.": "tt0198781",
+            "Apocalypse Now/Apocalypse Now": "tt0078788",
+            "O Sétimo Selo/The Seventh Seal": "tt0050976",
+            "Elefante/Elephant": "tt0366826",
+            "Soul/Soul": "tt2948372",
+            "O Diabo Veste Prada/The Devil Wears Prada": "tt0458352",
+            "O Náufrago/Cast Away": "tt0190947",
+            "O Regresso/The Revenant": "tt1216346",
+            "Thor/Thor": "tt0800369",
+            "Capitão América: O Primeiro Vingador/Captain America: The First Avenger": "tt0458339",
+            "Homem-Aranha: De Volta ao Lar/Spider-Man: Homecoming": "tt2250912",
+            "Venom/Venom": "tt1270797",
+            "X-Men: Primeira Classe/X-Men: First Class": "tt1270798",
+            "Harry Potter e a Câmara Secreta/Harry Potter and the Chamber of Secrets": "tt0304141",
+            "Harry Potter e o Prisioneiro de Azkaban/Harry Potter and the Prisoner of Azkaban": "tt0304142",
+            "Harry Potter e o Cálice de Fogo/Harry Potter and the Goblet of Fire": "tt0330373",
+            "Harry Potter e a Ordem da Fênix/Harry Potter and the Order of the Phoenix": "tt0373889",
+            "Harry Potter e o Enigma do Príncipe/Harry Potter and the Half-Blood Prince": "tt0417741",
+            "O Menino que Descobriu o Vento/The Boy Who Harnessed the Wind": "tt9116286",
+            "E.T. – O Extraterrestre/E.T. the Extra-Terrestrial": "tt0083866",
+            "O Show de Truman/The Truman Show": "tt0120382",
+            "O Rei do Show/The Greatest Showman": "tt1485796",
+            "Madrugada dos Mortos/Dawn of the Dead": "tt0363547",
+            "Como Treinar o Seu Dragão/How to Train Your Dragon": "tt0892769",
+            "A Chegada/Arrival": "tt2543164",
+            "O Hobbit: A Desolação de Smaug/The Hobbit: The Desolation of Smaug": "tt1170358",
+            "O Hobbit: A Batalha dos Cinco Exércitos/The Hobbit: The Battle of the Five Armies": "tt2310332",
+            "Interestelar/Interstellar": "tt0816692",
+            "Pulp Fiction/Pulp Fiction": "tt0110912",
+            "Forrest Gump/Forrest Gump": "tt0109830",
+            "Taxi Driver/Taxi Driver": "tt0075314",
+            "Era uma vez em Hollywood/Once Upon a Time in Hollywood": "tt7131622",
+            "12 Homens e Uma Sentença/12 Angry Men": "tt0050083",
+            "Scarface/Scarface": "tt0086250",
+            "O Silêncio dos Inocentes/The Silence of the Lambs": "tt0102926",
+            "Psicose/Psycho": "tt0054215",
+            "E.T. – O Extraterrestre/E.T. the Extra-Terrestrial": "tt0083866",
+            "O Show de Truman/The Truman Show": "tt0120382",
+            "O Rei do Show/The Greatest Showman": "tt1485796",
+            "Madrugada dos Mortos/Dawn of the Dead": "tt0363547",
+        };
 
-        async function pesquisar() {
+        function pesquisar() {
             const pesquisa = document.getElementById("pesquisa").value.trim();
             const resultado = document.getElementById("resultado");
-            resultado.innerHTML = "";  // Limpar resultados anteriores
+            resultado.innerHTML = "";
 
-            if (pesquisa === "") {
-                resultado.innerHTML = "<p>Digite o nome de um filme para pesquisar.</p>";
-                return;
-            }
+            let encontrado = false;
 
-            try {
-                // Fazendo a requisição à API do TMDb
-                const response = await fetch(`${baseUrl}?api_key=${apiKey}&query=${pesquisa}&language=pt-BR`);
-                const data = await response.json();
-                
-                if (data.results.length > 0) {
-                    // Exibindo os resultados encontrados
-                    data.results.forEach(filme => {
-                        const filmeNome = filme.title;
-                        const filmeID = filme.id;
-                        const filmePoster = filme.poster_path ? `https://image.tmdb.org/t/p/w500/${filme.poster_path}` : '';
-
-                        resultado.innerHTML += `
-                            <div>
-                                <img src="${filmePoster}" alt="${filmeNome}" width="100" />
-                                <p>Filme: ${filmeNome} - 
-                                    <a href="serversfilmes.html?filme=${filmeID}">Assistir</a>
-                                </p>
-                            </div>
-                        `;
-                    });
-                } else {
-                    resultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
+            // Procurar nos filmes
+            for (const [nome, id] of Object.entries(filmes)) {
+                if (nome.toLowerCase().includes(pesquisa.toLowerCase())) {
+                    resultado.innerHTML += `<p>Filme: ${nome} - <a href="serversfilmes.html?filme=${id}">Assistir</a></p>`;
+                    encontrado = true;
                 }
-            } catch (error) {
-                console.error("Erro ao buscar filmes:", error);
-                resultado.innerHTML = "<p>Ocorreu um erro ao buscar filmes. Tente novamente.</p>";
             }
+
+            if (!encontrado) {
+                resultado.innerHTML = "<p>Nenhum filme encontrado.</p>";
+            }
+        }
+
+        function capturarFilmes() {
+            let filmeID = document.getElementById("filmes").value;
+            window.location.href = `serversfilmes.html?filme=${filmeID}`;
+        }
+
+        function capturarSeries() {
+            let serieID = document.getElementById("series").value;
+            let ep = document.getElementById("ep").value;
+            let season = document.getElementById("season").value;
+            window.location.href = `serverseries.html?serie=${serieID}&ep=${ep}&season=${season}`;
         }
     </script>
 </body>

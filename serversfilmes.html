@@ -5,42 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmes e Séries</title>
     <style>
-        /* (mesmo estilo que tu tens, mantido para consistência) */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: black;
+        }
+        input {
+            padding: 5px;
+            margin: 10px;
+        }
+        .container {
+            text-align: left;
+            display: grid;
+            max-width: 80px;
+            padding: 70px;
+        }
+        button {
+            padding: 5px 10px;
+            background-color: #ff3838;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #e45555;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <button onclick="window.location.href='index.html';">Voltar</button>
     </div>
-
     <script>
         let filmeID = "";
+    function obterParametrosUrl() {
+        let params = new URLSearchParams(window.location.search);
+        filmeID = params.get("filme") || "";    
+    }
 
-        function obterParametrosUrl() {
-            let params = new URLSearchParams(window.location.search);
-            filmeID = params.get("filme") || "";
-        }
+    window.onload = obterParametrosUrl;
 
-        window.onload = obterParametrosUrl;
-
-        function abrirIframe(url) {
+    function abrirIframe(url) {
             let iframe = document.getElementById("videoFrame");
             iframe.src = url;
             iframe.hidden = false;
         }
+
     </script>
 
-    <h3>Escolha um servidor:</h3>
-    <div id="servers">
+<h3>Escolha um servidor:</h3>
+<div id="servers">
         <button onclick="abrirIframe(`https://embed.su/embed/movie/${filmeID}`)">Server 1</button>
         <button onclick="abrirIframe(`https://player.autoembed.cc/embed/movie/${filmeID}`)">Server 2</button>
         <button onclick="abrirIframe(`https://vidlink.pro/movie/${filmeID}`)">Server 3</button>
-        <button onclick="abrirIframe(`https://vidsrc.cc/v3/embed/movie/${filmeID}`)">Server 4</button> 
+        <button onclick="abrirIframe(`https://vidsrc.cc/v3/embed/movie/${filmeID}`)">Server 4</button> <!-- ha versao 2 -->
         <button onclick="abrirIframe(`https://vidsrc.icu/embed/movie/${filmeID}`)">Server 5</button>
         <button onclick="abrirIframe(`https://vidsrc.to/embed/movie/${filmeID}`)">Server 6</button>
         <button onclick="abrirIframe(`https://vidsrc.dev/embed/movie/${filmeID}`)">Server 7</button>
-    </div>
-
-    <iframe id="videoFrame" allow="encrypted-media" width="640" height="360" marginwidth="0" marginheight="0" scrolling="no" frameborder="0" allowfullscreen="yes" src=""></iframe>
+</div>
+<iframe id="videoFrame" allow='encrypted-media' width='640' height='360' marginwidth='0' marginheight='0' scrolling='no' frameborder='0' allowfullscreen='yes' src=''></iframe>
 </body>
 </html>
