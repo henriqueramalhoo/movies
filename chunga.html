@@ -52,11 +52,6 @@
             min-height: 100vh;
         }
 
-        .chunga {
-            text-align: center;
-        }
-
-
         .container {
             background-color: #ffffff;
             border-radius: 8px;
@@ -175,12 +170,12 @@
 </head>
     
 <body>
-    <div class="chunga">
-        <img src="chunga.jpeg">
-    </div>
+    
 
     <div class="container">
-        <img src="chunga.jpeg">
+        <p style="text-align: center;">
+            <img src="chunga.jpeg" alt="Centered Image">
+        </p>        
         <h1>ChungaMeter - Quão Chunga és tu?</h1>
         <p><i>Sistema cientificamente comprovado, criado pelo Departamento de Chungologia do ISTDMS (Instituto Superior de Tráfico de Droga da Margem Sul) que calcula com uma precisão de 98% quão chunga és. <br> A média de chunguisse é de 17 pontos, espero que tenhas mais g, cumgajo aqui não brinca</i></p>
         <p><strong>Responde com honestidade para obteres uma pontuação precisa!</strong></p>
@@ -189,6 +184,7 @@
             <ol>
                 <li>Qual o teu nome? <input type="text" id="name"></li>
                 <li>O teu nome tá nesta lista?
+                    <br>
                     <div>
                         <input type="radio" name="nameList" value="2"> Fabiana
                         <input type="radio" name="nameList" value="2"> Fábio
@@ -207,17 +203,23 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Tens alguma alcunha que não tem nada a ver com o teu nome?
+                    <br>
                     <input type="radio" name="nickname" value="2"> Sim
                     <input type="radio" name="nickname" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Tens apenas dois sobrenomes, sendo os dois comuns? (Exemplo: Bruno Silva Santos)?
+                    <br>
                     <input type="radio" name="surnames" value="1"> Sim
                     <input type="radio" name="surnames" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Vives nalgum destes sitios/bairros?
+                    <br>
                     <div>
                         <input type="radio" name="neighborhood" value="5"> Amadora
                         <input type="radio" name="neighborhood" value="5"> Linha de Sintra
@@ -234,7 +236,9 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Caso não vivas em nenhum dos anteriores, vives nalgum destes sitios?
+                    <br>
                     <div>
                         <input type="radio" name="neighborhood2" value="3"> Barreiro
                         <input type="radio" name="neighborhood2" value="3"> Seixal
@@ -251,14 +255,18 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Andaste/Andas numa escola profissional?
+                    <br>
                     <input type="radio" name="school" value="1"> Sim
                     <input type="radio" name="school" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Qual o teu método de transporte?
+                    <br>
                     <div>
-                        <input type="radio" name="transport" value="3"> Carro
+                        <input type="radio" name="transport" value="0"> Carro
                         <input type="radio" name="transport" value="3"> Bus
                         <input type="radio" name="transport" value="3"> Metro
                         <input type="radio" name="transport" value="3"> Comboio
@@ -266,35 +274,44 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Qual a palavra certa para namorada?
+                    <br>
                     <div>
-                        <input type="radio" name="girlfriendWord" value="3"> Namorada
+                        <input type="radio" name="girlfriendWord" value="0"> Namorada
                         <input type="radio" name="girlfriendWord" value="3"> Dama
                         <input type="radio" name="girlfriendWord" value="3"> Chavala
                         <input type="radio" name="girlfriendWord" value="3"> Gaja
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Entendes a que establecimento se refere cada uma destas palavras? (Mini, Conti, Indi, BK)
+                    <br>
                     <input type="radio" name="establishment" value="4"> Sim
                     <input type="radio" name="establishment" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>O que é um piso?
                     <div>
-                        <input type="radio" name="piso" value="2"> Chão
-                        <input type="radio" name="piso" value="2"> Masculino de pizza
+                        <input type="radio" name="piso" value="0"> Chão
+                        <input type="radio" name="piso" value="0"> Masculino de pizza
                         <input type="radio" name="piso" value="2"> Ténis
-                        <input type="radio" name="piso" value="2"> Órgão masculino
+                        <input type="radio" name="piso" value="0"> Órgão masculino
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Usas a palavra mambo regularmente?
+                    <br>
                     <input type="radio" name="mambo" value="2"> Sim
                     <input type="radio" name="mambo" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Com que frequência dizes maré?
+                    <br>
                     <div>
                         <input type="radio" name="mareFrequency" value="2"> Muita
                         <input type="radio" name="mareFrequency" value="1"> Ás vezes
@@ -302,20 +319,26 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Preferes Air Force 1 de que cor?
+                    <br>
                     <div>
-                        <input type="radio" name="airForceColor" value="2"> Preto
-                        <input type="radio" name="airForceColor" value="2"> Branco
-                        <input type="radio" name="airForceColor" value="2"> Outra cor
+                        <input type="radio" name="airForceColor" value="4"> Preto
+                        <input type="radio" name="airForceColor" value="0"> Branco
+                        <input type="radio" name="airForceColor" value="0"> Outra cor
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Já foste revistado no meio da rua?
+                    <br>
                     <input type="radio" name="searched" value="4"> Sim, cabrões dos bófias levaram-me a cinca
                     <input type="radio" name="searched" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Ordena as tuas prioridades na life:
+                    <br>
                     <div>
                         <input type="radio" name="priorities" value="3"> Money, Bitches, Fam
                         <input type="radio" name="priorities" value="3"> Fam, Money, Bitches
@@ -323,9 +346,11 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>O teu tropa faz anos, o que lhe dás de prenda?
+                    <br>
                     <div>
-                        <input type="radio" name="gift" value="0"> Nada
+                        <input type="radio" name="gift" value="5"> Nada
                         <input type="radio" name="gift" value="0"> Uma Camisola
                         <input type="radio" name="gift" value="0"> 10 paus
                         <input type="radio" name="gift" value="0"> Pica
@@ -333,7 +358,9 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Vais ao monhé, que tabaco compras?
+                    <br>
                     <div>
                         <input type="radio" name="tobacco" value="4"> Terea
                         <input type="radio" name="tobacco" value="4"> Marlboro Gold
@@ -345,18 +372,23 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Quantos gramas tem uma placa?
+                    <br>
                     <div>
-                        <input type="radio" name="placa" value="4"> 20
-                        <input type="radio" name="placa" value="4"> 50
+                        <input type="radio" name="placa" value="0"> 20
+                        <input type="radio" name="placa" value="0"> 50
                         <input type="radio" name="placa" value="4"> 100
-                        <input type="radio" name="placa" value="4"> 200
-                        <input type="radio" name="placa" value="4"> 500
+                        <input type="radio" name="placa" value="0"> 200
+                        <input type="radio" name="placa" value="0"> 500
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>És fã de algum destes artistas portugueses?
+                    <br>
                     <div>
+                        <input type="radio" name="artists" value="4"> Mota JR
                         <input type="radio" name="artists" value="4"> Minguito
                         <input type="radio" name="artists" value="4"> colombianacallmegringo
                         <input type="radio" name="artists" value="4"> BDK
@@ -366,12 +398,16 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Possuis Nike Tech Fleece?
+                    <br>
                     <input type="radio" name="nikeTech" value="5"> Sim
                     <input type="radio" name="nikeTech" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Quantos caias fumas por semana?
+                    <br>
                     <div>
                         <input type="radio" name="caias" value="3"> Já perdi a conta
                         <input type="radio" name="caias" value="3"> Mais de 15
@@ -380,57 +416,75 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Curtes manter no grab and go?
+                    <br>
                     <input type="radio" name="grabAndGo" value="2"> Sim
                     <input type="radio" name="grabAndGo" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Qual o melhor carro?
+                    <br>
                     <div>
-                        <input type="radio" name="car" value="2"> Renault Clio
-                        <input type="radio" name="car" value="2"> VW Golf
-                        <input type="radio" name="car" value="2"> Opel Astra
+                        <input type="radio" name="car" value="0"> Renault Clio
+                        <input type="radio" name="car" value="0"> VW Golf
+                        <input type="radio" name="car" value="0"> Opel Astra
                         <input type="radio" name="car" value="2"> SEAT Ibiza
-                        <input type="radio" name="car" value="2"> Seat Leon
+                        <input type="radio" name="car" value="0"> Seat Leon
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Compras roupa na JD?
+                    <br>
                     <input type="radio" name="jd" value="1"> Sim
                     <input type="radio" name="jd" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Tens algum tropa preso?
+                    <br>
                     <input type="radio" name="jailedFriend" value="2"> Sim
                     <input type="radio" name="jailedFriend" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Se fores dama, as tuas unhas são longas?
+                    <br>
                     <input type="radio" name="nails" value="2"> Sim
                     <input type="radio" name="nails" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Tas a dever cash a alguém?
+                    <br>
                     <input type="radio" name="debt" value="1"> Sim
                     <input type="radio" name="debt" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Como se chamam os agentes da autoridade?
+                    <br>
                     <div>
-                        <input type="radio" name="police" value="3"> Polícia
-                        <input type="radio" name="police" value="3"> Sr Guarda
+                        <input type="radio" name="police" value="0"> Polícia
+                        <input type="radio" name="police" value="0"> Sr Guarda
                         <input type="radio" name="police" value="3"> Azuis
                         <input type="radio" name="police" value="3"> Bongó
                         <input type="radio" name="police" value="3"> Bófia
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Andas de bolsa?
+                    <br>
                     <input type="radio" name="bag" value="2"> Sim
                     <input type="radio" name="bag" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Se sim, qual a marca?
+                    <br>
                     <div>
                         <input type="radio" name="bagBrand" value="3"> Marca Branca
                         <input type="radio" name="bagBrand" value="3"> Guess
@@ -440,13 +494,18 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Fumas vape?
+                    <br>
                     <input type="radio" name="vape" value="2"> Sim
                     <input type="radio" name="vape" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Quantas pessoas já levaste numa troti?
+                    <br>
                     <div>
+                        <input type="radio" name="trotinette" value="0"> 0
                         <input type="radio" name="trotinette" value="4"> 1
                         <input type="radio" name="trotinette" value="4"> 2
                         <input type="radio" name="trotinette" value="4"> 3+
@@ -454,41 +513,55 @@
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>És RP de alguma discoteca?
+                    <br>
                     <input type="radio" name="rp" value="1"> Sim
                     <input type="radio" name="rp" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Tens quantas tatuagens?
+                    <br>
                     <div>
                         <input type="radio" name="tattoos" value="2"> Menos de 5
                         <input type="radio" name="tattoos" value="2"> Mais de 5
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Tens o teu código postal na bio do Instagram?
+                    <br>
                     <input type="radio" name="postalCodeBio" value="3"> Sim
                     <input type="radio" name="postalCodeBio" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Frequentas bares de shisha?
+                    <br>
                     <div>
                         <input type="radio" name="shisha" value="3"> Não
                         <input type="radio" name="shisha" value="3"> Dobriga maré
                     </div>
                 </li>
                 <br>
+                <br>
                 <li>Tens o teu código postal no user do Instagram?
+                    <br>
                     <input type="radio" name="postalCodeUser" value="4"> Sim
                     <input type="radio" name="postalCodeUser" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Se fores do género feminino, possuis pestanas falsas?
+                    <br>
                     <input type="radio" name="eyelashes" value="2"> Sim
                     <input type="radio" name="eyelashes" value="0"> Não
                 </li>
                 <br>
+                <br>
                 <li>Tens algum vestuário do PSG ou do City?
+                    <br>
                     <input type="radio" name="psgCity" value="2"> Sim
                     <input type="radio" name="psgCity" value="0"> Não
                 </li>
