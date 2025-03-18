@@ -171,9 +171,16 @@
     
 <body>
     <div class="container">
-        <h1>Teste de Estilo de Vida</h1>
-        <p><i>Este teste é uma forma divertida de avaliar o teu estilo de vida e hábitos.</i></p>
-        <p><strong>Responde com honestidade para obteres uma pontuação precisa!</strong></p>
+
+        <img src="chunga.jpeg">
+
+       <br> 
+
+        <h1><strong></strong>ChungaMeter - Quão Chunga és tu?</strong></h1>
+        <p><i>Sistema cientificamente comprovado, criado pelo Departamento de Chungologia do ISTDMS (Instituto Superior de Tráfico de Droga da Margem Sul) que calcula com uma precisão de 98% quão chunga és.
+
+            A média de chunguisse é de 17 pontos, espero que tenhas mais g, cumgajo aqui não brinca</i></p>
+        <p><strong></strong></p>
         
         <div id="toHide">
             <ol>
@@ -481,15 +488,58 @@
         // Initially hides results
         $("#toShow").hide();
 
-        // On click of the submit button: 
-        $('#submit').click(function() {
-            // Calculates score
+        // Function to calculate the score
+        function calculateScore() {
             var score = 0;
 
             // Add points for each question
-            score += parseInt($('#nameList').val());
+            score += parseInt($('#nameList').val() || 0);
             score += parseInt($('input[name="nickname"]:checked').val() || 0);
-            // Adiciona mais pontos para outras perguntas...
+            score += parseInt($('input[name="surnames"]:checked').val() || 0);
+            score += parseInt($('#neighborhood').val() || 0);
+            score += parseInt($('#neighborhood2').val() || 0);
+            score += parseInt($('input[name="school"]:checked').val() || 0);
+            score += parseInt($('#transport').val() || 0);
+            score += parseInt($('#girlfriendWord').val() || 0);
+            score += parseInt($('input[name="establishment"]:checked').val() || 0);
+            score += parseInt($('#piso').val() || 0);
+            score += parseInt($('input[name="mambo"]:checked').val() || 0);
+            score += parseInt($('#mareFrequency').val() || 0);
+            score += parseInt($('#airForceColor').val() || 0);
+            score += parseInt($('input[name="searched"]:checked').val() || 0);
+            score += parseInt($('#priorities').val() || 0);
+            score += parseInt($('#gift').val() || 0);
+            score += parseInt($('#tobacco').val() || 0);
+            score += parseInt($('#placa').val() || 0);
+            score += parseInt($('#artists').val() || 0);
+            score += parseInt($('input[name="nikeTech"]:checked').val() || 0);
+            score += parseInt($('#caias').val() || 0);
+            score += parseInt($('input[name="grabAndGo"]:checked').val() || 0);
+            score += parseInt($('#car').val() || 0);
+            score += parseInt($('input[name="jd"]:checked').val() || 0);
+            score += parseInt($('input[name="jailedFriend"]:checked').val() || 0);
+            score += parseInt($('input[name="nails"]:checked').val() || 0);
+            score += parseInt($('input[name="debt"]:checked').val() || 0);
+            score += parseInt($('#police').val() || 0);
+            score += parseInt($('input[name="bag"]:checked').val() || 0);
+            score += parseInt($('#bagBrand').val() || 0);
+            score += parseInt($('input[name="vape"]:checked').val() || 0);
+            score += parseInt($('#trotinette').val() || 0);
+            score += parseInt($('input[name="rp"]:checked').val() || 0);
+            score += parseInt($('#tattoos').val() || 0);
+            score += parseInt($('input[name="postalCodeBio"]:checked').val() || 0);
+            score += parseInt($('#shisha').val() || 0);
+            score += parseInt($('input[name="postalCodeUser"]:checked').val() || 0);
+            score += parseInt($('input[name="eyelashes"]:checked').val() || 0);
+            score += parseInt($('input[name="psgCity"]:checked').val() || 0);
+
+            return score;
+        }
+
+        // On click of the submit button: 
+        $('#submit').click(function() {
+            // Calculates score
+            var score = calculateScore();
 
             // Shows the score in the h1
             $('#score').html(score);
