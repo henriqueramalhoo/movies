@@ -52,10 +52,6 @@
             min-height: 100vh;
         }
 
-        .pila {
-            text-align: center;
-        }
-
         .container {
             background-color: #ffffff;
             border-radius: 8px;
@@ -174,353 +170,284 @@
 </head>
     
 <body>
-    <div class="pila"></div>
+    <div class="chunga">
         <img src="chunga.jpeg">
     </div>
 
     <div class="container">
-
-        <img src="chunga.jpeg">
-
-       <br> 
-
-        <h1><strong></strong>ChungaMeter - Quão Chunga és tu?</strong></h1>
-        <p><i>Sistema cientificamente comprovado, criado pelo Departamento de Chungologia do ISTDMS (Instituto Superior de Tráfico de Droga da Margem Sul) que calcula com uma precisão de 98% quão chunga és.
-
-            <br> A média de chunguisse é de 17 pontos, espero que tenhas mais g, cumgajo aqui não brinca</i></p>
-        <p><strong></strong></p>
+        <h1>ChungaMeter - Quão Chunga és tu?</h1>
+        <p><i>Sistema cientificamente comprovado, criado pelo Departamento de Chungologia do ISTDMS (Instituto Superior de Tráfico de Droga da Margem Sul) que calcula com uma precisão de 98% quão chunga és. <br> A média de chunguisse é de 17 pontos, espero que tenhas mais g, cumgajo aqui não brinca</i></p>
+        <p><strong>Responde com honestidade para obteres uma pontuação precisa!</strong></p>
         
         <div id="toHide">
             <ol>
                 <li>Qual o teu nome? <input type="text" id="name"></li>
                 <li>O teu nome tá nesta lista?
-                    <select id="nameList">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Fabiana</option>
-                        <option value="2">Fábio</option>
-                        <option value="2">Flávio</option>
-                        <option value="2">Gerson</option>
-                        <option value="2">Rúben</option>
-                        <option value="2">Tatiana</option>
-                        <option value="2">Elder</option>
-                        <option value="2">Leandro</option>
-                        <option value="2">Iuri</option>
-                        <option value="2">Jéssica</option>
-                        <option value="2">Vanessa</option>
-                        <option value="2">Soraia</option>
-                        <option value="2">Bruno</option>
-                        <option value="0">O meu nome não está na lista</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="nameList" value="2"> Fabiana
+                        <input type="radio" name="nameList" value="2"> Fábio
+                        <input type="radio" name="nameList" value="2"> Flávio
+                        <input type="radio" name="nameList" value="2"> Gerson
+                        <input type="radio" name="nameList" value="2"> Rúben
+                        <input type="radio" name="nameList" value="2"> Tatiana
+                        <input type="radio" name="nameList" value="2"> Elder
+                        <input type="radio" name="nameList" value="2"> Leandro
+                        <input type="radio" name="nameList" value="2"> Iuri
+                        <input type="radio" name="nameList" value="2"> Jéssica
+                        <input type="radio" name="nameList" value="2"> Vanessa
+                        <input type="radio" name="nameList" value="2"> Soraia
+                        <input type="radio" name="nameList" value="2"> Bruno
+                        <input type="radio" name="nameList" value="0"> O meu nome não está na lista
+                    </div>
                 </li>
-                <br>
                 <li>Tens alguma alcunha que não tem nada a ver com o teu nome?
                     <input type="radio" name="nickname" value="2"> Sim
                     <input type="radio" name="nickname" value="0"> Não
                 </li>
-                <br>
                 <li>Tens apenas dois sobrenomes, sendo os dois comuns? (Exemplo: Bruno Silva Santos)?
                     <input type="radio" name="surnames" value="1"> Sim
                     <input type="radio" name="surnames" value="0"> Não
                 </li>
-                <br>
                 <li>Vives nalgum destes sitios/bairros?
-                    <select id="neighborhood">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="5">Amadora</option>
-                        <option value="5">Linha de Sintra</option>
-                        <option value="5">Sun City</option>
-                        <option value="5">Chelas</option>
-                        <option value="5">Vale da Amoreira</option>
-                        <option value="5">Bairro da Jamaica</option>
-                        <option value="5">Monte da Caparica</option>
-                        <option value="5">Bela Vista</option>
-                        <option value="5">Quinta do Mocho</option>
-                        <option value="5">Cova da Moura</option>
-                        <option value="5">Outro bairro que te dá street rep automática</option>
-                        <option value="0">Nenhum destes</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="neighborhood" value="5"> Amadora
+                        <input type="radio" name="neighborhood" value="5"> Linha de Sintra
+                        <input type="radio" name="neighborhood" value="5"> Sun City
+                        <input type="radio" name="neighborhood" value="5"> Chelas
+                        <input type="radio" name="neighborhood" value="5"> Vale da Amoreira
+                        <input type="radio" name="neighborhood" value="5"> Bairro da Jamaica
+                        <input type="radio" name="neighborhood" value="5"> Monte da Caparica
+                        <input type="radio" name="neighborhood" value="5"> Bela Vista
+                        <input type="radio" name="neighborhood" value="5"> Quinta do Mocho
+                        <input type="radio" name="neighborhood" value="5"> Cova da Moura
+                        <input type="radio" name="neighborhood" value="5"> Outro bairro que te dá street rep automática
+                        <input type="radio" name="neighborhood" value="0"> Nenhum destes
+                    </div>
                 </li>
-                <br>
                 <li>Caso não vivas em nenhum dos anteriores, vives nalgum destes sitios?
-                    <select id="neighborhood2">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Barreiro</option>
-                        <option value="3">Seixal</option>
-                        <option value="3">Almada</option>
-                        <option value="3">Corroios</option>
-                        <option value="3">Setúbal</option>
-                        <option value="3">Via Longa</option>
-                        <option value="3">Odivelas</option>
-                        <option value="3">Olivais</option>
-                        <option value="3">Marvila</option>
-                        <option value="3">Amora</option>
-                        <option value="3">Benfica</option>
-                        <option value="0">Não</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="neighborhood2" value="3"> Barreiro
+                        <input type="radio" name="neighborhood2" value="3"> Seixal
+                        <input type="radio" name="neighborhood2" value="3"> Almada
+                        <input type="radio" name="neighborhood2" value="3"> Corroios
+                        <input type="radio" name="neighborhood2" value="3"> Setúbal
+                        <input type="radio" name="neighborhood2" value="3"> Via Longa
+                        <input type="radio" name="neighborhood2" value="3"> Odivelas
+                        <input type="radio" name="neighborhood2" value="3"> Olivais
+                        <input type="radio" name="neighborhood2" value="3"> Marvila
+                        <input type="radio" name="neighborhood2" value="3"> Amora
+                        <input type="radio" name="neighborhood2" value="3"> Benfica
+                        <input type="radio" name="neighborhood2" value="0"> Não
+                    </div>
                 </li>
-                <br>
                 <li>Andaste/Andas numa escola profissional?
                     <input type="radio" name="school" value="1"> Sim
                     <input type="radio" name="school" value="0"> Não
                 </li>
-                <br>
                 <li>Qual o teu método de transporte?
-                    <select id="transport">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Carro</option>
-                        <option value="3">Bus</option>
-                        <option value="3">Metro</option>
-                        <option value="3">Comboio</option>
-                        <option value="3">Troti</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="transport" value="3"> Carro
+                        <input type="radio" name="transport" value="3"> Bus
+                        <input type="radio" name="transport" value="3"> Metro
+                        <input type="radio" name="transport" value="3"> Comboio
+                        <input type="radio" name="transport" value="3"> Troti
+                    </div>
                 </li>
-                <br>
                 <li>Qual a palavra certa para namorada?
-                    <select id="girlfriendWord">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Namorada</option>
-                        <option value="3">Dama</option>
-                        <option value="3">Chavala</option>
-                        <option value="3">Gaja</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="girlfriendWord" value="3"> Namorada
+                        <input type="radio" name="girlfriendWord" value="3"> Dama
+                        <input type="radio" name="girlfriendWord" value="3"> Chavala
+                        <input type="radio" name="girlfriendWord" value="3"> Gaja
+                    </div>
                 </li>
-                <br>
                 <li>Entendes a que establecimento se refere cada uma destas palavras? (Mini, Conti, Indi, BK)
                     <input type="radio" name="establishment" value="4"> Sim
                     <input type="radio" name="establishment" value="0"> Não
                 </li>
-                <br>
                 <li>O que é um piso?
-                    <select id="piso">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Chão</option>
-                        <option value="2">Masculino de pizza</option>
-                        <option value="2">Ténis</option>
-                        <option value="2">Órgão masculino</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="piso" value="2"> Chão
+                        <input type="radio" name="piso" value="2"> Masculino de pizza
+                        <input type="radio" name="piso" value="2"> Ténis
+                        <input type="radio" name="piso" value="2"> Órgão masculino
+                    </div>
                 </li>
-                <br>
                 <li>Usas a palavra mambo regularmente?
                     <input type="radio" name="mambo" value="2"> Sim
                     <input type="radio" name="mambo" value="0"> Não
                 </li>
-                <br>
                 <li>Com que frequência dizes maré?
-                    <select id="mareFrequency">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Muita</option>
-                        <option value="1">Ás vezes</option>
-                        <option value="0">Nunca</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="mareFrequency" value="2"> Muita
+                        <input type="radio" name="mareFrequency" value="1"> Ás vezes
+                        <input type="radio" name="mareFrequency" value="0"> Nunca
+                    </div>
                 </li>
-                <br>
                 <li>Preferes Air Force 1 de que cor?
-                    <select id="airForceColor">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Preto</option>
-                        <option value="2">Branco</option>
-                        <option value="2">Outra cor</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="airForceColor" value="2"> Preto
+                        <input type="radio" name="airForceColor" value="2"> Branco
+                        <input type="radio" name="airForceColor" value="2"> Outra cor
+                    </div>
                 </li>
-                <br>
                 <li>Já foste revistado no meio da rua?
                     <input type="radio" name="searched" value="4"> Sim, cabrões dos bófias levaram-me a cinca
                     <input type="radio" name="searched" value="0"> Não
                 </li>
-                <br>
                 <li>Ordena as tuas prioridades na life:
-                    <select id="priorities">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Money, Bitches, Fam</option>
-                        <option value="3">money, Fam, Bitches</option>
-                        <option value="3">Bitches, Money, Fam</option>
-                        <option value="3">Bitches, Fam, Money</option>
-                        <option value="0">Fam, Money, Bitches</option>
-                        <option value="3">Fam, Bitches, Money</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="priorities" value="3"> Money, Bitches, Fam
+                        <input type="radio" name="priorities" value="3"> Fam, Money, Bitches
+                        <input type="radio" name="priorities" value="3"> Bitches, Money, Fam
+                    </div>
                 </li>
-                <br>
                 <li>O teu tropa faz anos, o que lhe dás de prenda?
-                    <select id="gift">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="0">Nada</option>
-                        <option value="0">Uma Camisola</option>
-                        <option value="0">10 paus</option>
-                        <option value="0">Pica</option>
-                        <option value="0">Um hambúrguer do MC</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="gift" value="0"> Nada
+                        <input type="radio" name="gift" value="0"> Uma Camisola
+                        <input type="radio" name="gift" value="0"> 10 paus
+                        <input type="radio" name="gift" value="0"> Pica
+                        <input type="radio" name="gift" value="0"> Um hambúrguer do MC
+                    </div>
                 </li>
-                <br>
                 <li>Vais ao monhé, que tabaco compras?
-                    <select id="tobacco">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="4">Terea</option>
-                        <option value="4">Marlboro Gold</option>
-                        <option value="4">Marlboro Red</option>
-                        <option value="4">Camel</option>
-                        <option value="4">Winston 100s</option>
-                        <option value="4">Chesterfield</option>
-                        <option value="0">Não fumo</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="tobacco" value="4"> Terea
+                        <input type="radio" name="tobacco" value="4"> Marlboro Gold
+                        <input type="radio" name="tobacco" value="4"> Marlboro Red
+                        <input type="radio" name="tobacco" value="4"> Camel
+                        <input type="radio" name="tobacco" value="4"> Winston 100s
+                        <input type="radio" name="tobacco" value="4"> Chesterfield
+                        <input type="radio" name="tobacco" value="0"> Não fumo
+                    </div>
                 </li>
-                <br>
                 <li>Quantos gramas tem uma placa?
-                    <select id="placa">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="4">20</option>
-                        <option value="4">50</option>
-                        <option value="4">100</option>
-                        <option value="4">200</option>
-                        <option value="4">500</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="placa" value="4"> 20
+                        <input type="radio" name="placa" value="4"> 50
+                        <input type="radio" name="placa" value="4"> 100
+                        <input type="radio" name="placa" value="4"> 200
+                        <input type="radio" name="placa" value="4"> 500
+                    </div>
                 </li>
-                <br>
                 <li>És fã de algum destes artistas portugueses?
-                    <select id="artists">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="4">Minguito</option>
-                        <option value="4">colombianacallmegringo</option>
-                        <option value="4">BDK</option>
-                        <option value="4">MS Capone</option>
-                        <option value="4">King Biggs</option>
-                        <option value="0">Não</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="artists" value="4"> Minguito
+                        <input type="radio" name="artists" value="4"> colombianacallmegringo
+                        <input type="radio" name="artists" value="4"> BDK
+                        <input type="radio" name="artists" value="4"> MS Capone
+                        <input type="radio" name="artists" value="4"> King Biggs
+                        <input type="radio" name="artists" value="0"> Não
+                    </div>
                 </li>
-                <br>
                 <li>Possuis Nike Tech Fleece?
                     <input type="radio" name="nikeTech" value="5"> Sim
                     <input type="radio" name="nikeTech" value="0"> Não
                 </li>
-                <br>
                 <li>Quantos caias fumas por semana?
-                    <select id="caias">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Já perdi a conta</option>
-                        <option value="3">Mais de 15</option>
-                        <option value="3">Menos de 15</option>
-                        <option value="0">Não fumo disso</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="caias" value="3"> Já perdi a conta
+                        <input type="radio" name="caias" value="3"> Mais de 15
+                        <input type="radio" name="caias" value="3"> Menos de 15
+                        <input type="radio" name="caias" value="0"> Não fumo disso
+                    </div>
                 </li>
-                <br>
                 <li>Curtes manter no grab and go?
                     <input type="radio" name="grabAndGo" value="2"> Sim
                     <input type="radio" name="grabAndGo" value="0"> Não
                 </li>
-                <br>
                 <li>Qual o melhor carro?
-                    <select id="car">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Renault Clio</option>
-                        <option value="2">VW Golf</option>
-                        <option value="2">Opel Astra</option>
-                        <option value="2">SEAT Ibiza</option>
-                        <option value="2">Seat Leon</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="car" value="2"> Renault Clio
+                        <input type="radio" name="car" value="2"> VW Golf
+                        <input type="radio" name="car" value="2"> Opel Astra
+                        <input type="radio" name="car" value="2"> SEAT Ibiza
+                        <input type="radio" name="car" value="2"> Seat Leon
+                    </div>
                 </li>
-                <br>
                 <li>Compras roupa na JD?
                     <input type="radio" name="jd" value="1"> Sim
                     <input type="radio" name="jd" value="0"> Não
                 </li>
-                <br>
                 <li>Tens algum tropa preso?
                     <input type="radio" name="jailedFriend" value="2"> Sim
                     <input type="radio" name="jailedFriend" value="0"> Não
                 </li>
-                <br>
                 <li>Se fores dama, as tuas unhas são longas?
                     <input type="radio" name="nails" value="2"> Sim
                     <input type="radio" name="nails" value="0"> Não
                 </li>
-                <br>
                 <li>Tas a dever cash a alguém?
                     <input type="radio" name="debt" value="1"> Sim
                     <input type="radio" name="debt" value="0"> Não
                 </li>
-                <br>
                 <li>Como se chamam os agentes da autoridade?
-                    <select id="police">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Polícia</option>
-                        <option value="3">Sr Guarda</option>
-                        <option value="3">Azuis</option>
-                        <option value="3">Bongó</option>
-                        <option value="3">Bófia</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="police" value="3"> Polícia
+                        <input type="radio" name="police" value="3"> Sr Guarda
+                        <input type="radio" name="police" value="3"> Azuis
+                        <input type="radio" name="police" value="3"> Bongó
+                        <input type="radio" name="police" value="3"> Bófia
+                    </div>
                 </li>
-                <br>
                 <li>Andas de bolsa?
                     <input type="radio" name="bag" value="2"> Sim
                     <input type="radio" name="bag" value="0"> Não
                 </li>
-                <br>
                 <li>Se sim, qual a marca?
-                    <select id="bagBrand">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Marca Branca</option>
-                        <option value="3">Guess</option>
-                        <option value="3">Nike</option>
-                        <option value="3">Adidas</option>
-                        <option value="3">Outra</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="bagBrand" value="3"> Marca Branca
+                        <input type="radio" name="bagBrand" value="3"> Guess
+                        <input type="radio" name="bagBrand" value="3"> Nike
+                        <input type="radio" name="bagBrand" value="3"> Adidas
+                        <input type="radio" name="bagBrand" value="3"> Outra
+                    </div>
                 </li>
-                <br>
                 <li>Fumas vape?
                     <input type="radio" name="vape" value="2"> Sim
                     <input type="radio" name="vape" value="0"> Não
                 </li>
-                <br>
                 <li>Quantas pessoas já levaste numa troti?
-                    <select id="trotinette">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="4">1</option>
-                        <option value="4">2</option>
-                        <option value="4">3+</option>
-                        <option value="0">Nunca andei de troti</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="trotinette" value="4"> 1
+                        <input type="radio" name="trotinette" value="4"> 2
+                        <input type="radio" name="trotinette" value="4"> 3+
+                        <input type="radio" name="trotinette" value="0"> Nunca andei de troti
+                    </div>
                 </li>
-                <br>
                 <li>És RP de alguma discoteca?
                     <input type="radio" name="rp" value="1"> Sim
                     <input type="radio" name="rp" value="0"> Não
                 </li>
-                <br>
                 <li>Tens quantas tatuagens?
-                    <select id="tattoos">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="2">Menos de 5</option>
-                        <option value="2">Mais de 5</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="tattoos" value="2"> Menos de 5
+                        <input type="radio" name="tattoos" value="2"> Mais de 5
+                    </div>
                 </li>
-                <br>
                 <li>Tens o teu código postal na bio do Instagram?
                     <input type="radio" name="postalCodeBio" value="3"> Sim
                     <input type="radio" name="postalCodeBio" value="0"> Não
                 </li>
-                <br>
                 <li>Frequentas bares de shisha?
-                    <select id="shisha">
-                        <option value="0">Escolhe uma opção</option>
-                        <option value="3">Não</option>
-                        <option value="3">Dobriga maré</option>
-                    </select>
+                    <div>
+                        <input type="radio" name="shisha" value="3"> Não
+                        <input type="radio" name="shisha" value="3"> Dobriga maré
+                    </div>
                 </li>
-                <br>
                 <li>Tens o teu código postal no user do Instagram?
                     <input type="radio" name="postalCodeUser" value="4"> Sim
                     <input type="radio" name="postalCodeUser" value="0"> Não
                 </li>
-                <br>
                 <li>Se fores do género feminino, possuis pestanas falsas?
                     <input type="radio" name="eyelashes" value="2"> Sim
                     <input type="radio" name="eyelashes" value="0"> Não
                 </li>
-                <br>
                 <li>Tens algum vestuário do PSG ou do City?
                     <input type="radio" name="psgCity" value="2"> Sim
                     <input type="radio" name="psgCity" value="0"> Não
                 </li>
-                <br>
             </ol>
 
             <button class="button" id="submit">Calcula a minha pontuação!</button>
@@ -543,42 +470,42 @@
             var score = 0;
 
             // Add points for each question
-            score += parseInt($('#nameList').val() || 0);
+            score += parseInt($('input[name="nameList"]:checked').val() || 0);
             score += parseInt($('input[name="nickname"]:checked').val() || 0);
             score += parseInt($('input[name="surnames"]:checked').val() || 0);
-            score += parseInt($('#neighborhood').val() || 0);
-            score += parseInt($('#neighborhood2').val() || 0);
+            score += parseInt($('input[name="neighborhood"]:checked').val() || 0);
+            score += parseInt($('input[name="neighborhood2"]:checked').val() || 0);
             score += parseInt($('input[name="school"]:checked').val() || 0);
-            score += parseInt($('#transport').val() || 0);
-            score += parseInt($('#girlfriendWord').val() || 0);
+            score += parseInt($('input[name="transport"]:checked').val() || 0);
+            score += parseInt($('input[name="girlfriendWord"]:checked').val() || 0);
             score += parseInt($('input[name="establishment"]:checked').val() || 0);
-            score += parseInt($('#piso').val() || 0);
+            score += parseInt($('input[name="piso"]:checked').val() || 0);
             score += parseInt($('input[name="mambo"]:checked').val() || 0);
-            score += parseInt($('#mareFrequency').val() || 0);
-            score += parseInt($('#airForceColor').val() || 0);
+            score += parseInt($('input[name="mareFrequency"]:checked').val() || 0);
+            score += parseInt($('input[name="airForceColor"]:checked').val() || 0);
             score += parseInt($('input[name="searched"]:checked').val() || 0);
-            score += parseInt($('#priorities').val() || 0);
-            score += parseInt($('#gift').val() || 0);
-            score += parseInt($('#tobacco').val() || 0);
-            score += parseInt($('#placa').val() || 0);
-            score += parseInt($('#artists').val() || 0);
+            score += parseInt($('input[name="priorities"]:checked').val() || 0);
+            score += parseInt($('input[name="gift"]:checked').val() || 0);
+            score += parseInt($('input[name="tobacco"]:checked').val() || 0);
+            score += parseInt($('input[name="placa"]:checked').val() || 0);
+            score += parseInt($('input[name="artists"]:checked').val() || 0);
             score += parseInt($('input[name="nikeTech"]:checked').val() || 0);
-            score += parseInt($('#caias').val() || 0);
+            score += parseInt($('input[name="caias"]:checked').val() || 0);
             score += parseInt($('input[name="grabAndGo"]:checked').val() || 0);
-            score += parseInt($('#car').val() || 0);
+            score += parseInt($('input[name="car"]:checked').val() || 0);
             score += parseInt($('input[name="jd"]:checked').val() || 0);
             score += parseInt($('input[name="jailedFriend"]:checked').val() || 0);
             score += parseInt($('input[name="nails"]:checked').val() || 0);
             score += parseInt($('input[name="debt"]:checked').val() || 0);
-            score += parseInt($('#police').val() || 0);
+            score += parseInt($('input[name="police"]:checked').val() || 0);
             score += parseInt($('input[name="bag"]:checked').val() || 0);
-            score += parseInt($('#bagBrand').val() || 0);
+            score += parseInt($('input[name="bagBrand"]:checked').val() || 0);
             score += parseInt($('input[name="vape"]:checked').val() || 0);
-            score += parseInt($('#trotinette').val() || 0);
+            score += parseInt($('input[name="trotinette"]:checked').val() || 0);
             score += parseInt($('input[name="rp"]:checked').val() || 0);
-            score += parseInt($('#tattoos').val() || 0);
+            score += parseInt($('input[name="tattoos"]:checked').val() || 0);
             score += parseInt($('input[name="postalCodeBio"]:checked').val() || 0);
-            score += parseInt($('#shisha').val() || 0);
+            score += parseInt($('input[name="shisha"]:checked').val() || 0);
             score += parseInt($('input[name="postalCodeUser"]:checked').val() || 0);
             score += parseInt($('input[name="eyelashes"]:checked').val() || 0);
             score += parseInt($('input[name="psgCity"]:checked').val() || 0);
@@ -603,7 +530,6 @@
         $('#reset').click(function() {
             $('input[type="text"]').val('');
             $('input[type="radio"]').prop('checked', false);
-            $('select').val(0);
         });
     </script>
 </body>
