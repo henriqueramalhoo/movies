@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Streams</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        button {
+            width: 100%;
+            height: 60px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            box-shadow: 0 4px 8px rgba(255, 69, 0, 0.3);
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button onclick="window.location.href='sportv1.html';">SportTV1</button>
+        <button onclick="window.location.href='eleven1.html';">ELEVEN SPORTS 1</button>
+        <button onclick="window.location.href='sportv2.html';">SportTV2</button>
+        <button onclick="window.location.href='sportv3.html';">SportTV3</button>
+        <button onclick="window.location.href='sportv4.html';">SportTV4</button>
+        <button onclick="window.location.href='sportv5.html';">SportTV5</button>
+        <button onclick="window.location.href='sportv6.html';">SportTV6</button>
+        <button onclick="window.location.href='eleven2.html';">ELEVEN SPORTS 2</button>
+        <button onclick="window.location.href='eleven3.html';">ELEVEN SPORTS 3</button>
+        <button onclick="window.location.href='eleven4.html';">ELEVEN SPORTS 4</button>
+        <button onclick="window.location.href='eleven5.html';">ELEVEN SPORTS 5</button>
+        <button onclick="window.location.href='eleven6.html';">ELEVEN SPORTS 6</button>
+        <button onclick="window.location.href='BENFICATV.html';">Benfica TV</button>
+        <button onclick="window.location.href='filmeseseries.html';">FilmeseSéries</button>
+        <button onclick="window.location.href='ufc.html';">UFC</button>
+        <button onclick="window.location.href='disney.html';">Disney</button>
+        <button onclick="window.location.href='cn.html';">Cartoon Network</button>
+        <button onclick="window.location.href='fox.html';">Fox</button>
+        <button onclick="window.location.href='mtv.html';">MTV</button>
+    </div>
+
+</body>
+</html>
