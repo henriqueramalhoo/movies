@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZW9TZJ46CP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZW9TZJ46CP');
+    </script>
+        
+    <!-- META -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+
+    <!-- Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3772914411949506" crossorigin="anonymous"></script>
+
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-72303300-2', 'auto');
+        ga('send', 'pageview');
+        ga('set', 'transport', 'beacon');
+    </script>
+     
+    <!-- Title -->
+    <title>Teste de Estilo Beto</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="favicon.png">
+
+    <!-- Style -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f3f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #202124;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #202124;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 14px;
+            color: #5f6368;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        ol {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 14px;
+            color: #202124;
+            margin-left: 8px;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        input[type="radio"], input[type="button"] {
+            transform: scale(2); /* Adjust the scaling factor as needed */
+            margin-right: 10px;
+        }
+
+        .button {
+            background-color: #1a73e8;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-right: 10px;
+            size: 40px;
+        }
+
+        .button:hover {
+            background-color: #63a1f1;
+        }
+
+        #toShow {
+            display: none;
+            text-align: center;
+        }
+
+        #score {
+            font-size: 36px;
+            color: #1a73e8;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            h2 {
+                font-size: 16px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+
+            label {
+                font-size: 12px;
+            }
+
+            input[type="text"], select {
+                font-size: 12px;
+            }
+
+            .button {
+                font-size: 12px;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+    
+<body>
+    
+
+    <div class="container">
+        <p style="text-align: center;">
+            <img src="beto.jpeg" alt="Centered Image">
+        </p>        
+        <h1>BetoMeter - Quão Beto és tu?</h1>
+        <p><i>Sistema cientificamente comprovado que calcula com precisão o teu nível de "betice". <br> A média portuguesa é de 15 pontos - quanto mais alto, mais beto és!</i></p>
+        <p><strong>Responde com honestidade para obteres uma pontuação precisa!</strong></p>
+        
+        <div id="toHide">
+            <ol>
+                <li>Qual o teu nome? <input type="text" id="name"></li>
+                <li>O teu nome está nesta lista?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="nameList" value="5"> Francisco<br>
+                        <input type="radio" name="nameList" value="5"> Afonso<br>
+                        <input type="radio" name="nameList" value="5"> Maria<br>
+                        <input type="radio" name="nameList" value="5"> Inês<br>
+                        <input type="radio" name="nameList" value="5"> João<br>
+                        <input type="radio" name="nameList" value="5"> Margarida<br>
+                        <input type="radio" name="nameList" value="5"> Duarte<br>
+                        <input type="radio" name="nameList" value="5"> Leonor<br>
+                        <input type="radio" name="nameList" value="0"> O meu nome não está na lista<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Tens mais de dois sobrenomes?
+                    <br><br>
+                    <input type="radio" name="surnames" value="5"> Sim<br>
+                    <input type="radio" name="surnames" value="0"> Não<br>
+                </li>
+                <br>
+                <br>
+                <li>Vives em algum destes bairros?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="neighborhood" value="5"> Lapa<br>
+                        <input type="radio" name="neighborhood" value="5"> Estrela<br>
+                        <input type="radio" name="neighborhood" value="5"> Restelo<br>
+                        <input type="radio" name="neighborhood" value="5"> Avenidas Novas<br>
+                        <input type="radio" name="neighborhood" value="5"> Cascais<br>
+                        <input type="radio" name="neighborhood" value="5"> Oeiras<br>
+                        <input type="radio" name="neighborhood" value="5"> Alvalade<br>
+                        <input type="radio" name="neighborhood" value="5"> Campo de Ourique<br>
+                        <input type="radio" name="neighborhood" value="0"> Nenhum destes<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Andaste em algum destes colégios?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="school" value="5"> São João de Brito<br>
+                        <input type="radio" name="school" value="5"> Colégio Moderno<br>
+                        <input type="radio" name="school" value="5"> Colégio Planalto<br>
+                        <input type="radio" name="school" value="5"> Colégio St. Julian's<br>
+                        <input type="radio" name="school" value="5"> Colégio Valsassina<br>
+                        <input type="radio" name="school" value="5"> Colégio Pedro Arrupe<br>
+                        <input type="radio" name="school" value="0"> Nenhum destes<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual o teu método de transporte preferido?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="transport" value="5"> Carro dos pais<br>
+                        <input type="radio" name="transport" value="3"> Uber<br>
+                        <input type="radio" name="transport" value="1"> Metro<br>
+                        <input type="radio" name="transport" value="0"> Autocarro<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Onde costumas passar férias?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="vacation" value="5"> Comporta<br>
+                        <input type="radio" name="vacation" value="5"> Algarve (Quinta do Lago/Vale do Lobo)<br>
+                        <input type="radio" name="vacation" value="5"> Suíça (esquiar)<br>
+                        <input type="radio" name="vacation" value="3"> Algarve (Albufeira)<br>
+                        <input type="radio" name="vacation" value="0"> Não costumo sair<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual a tua bebida de eleição?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="drink" value="5"> Gin Tónico<br>
+                        <input type="radio" name="drink" value="5"> Whisky<br>
+                        <input type="radio" name="drink" value="3"> Caipirinha<br>
+                        <input type="radio" name="drink" value="1"> Cerveja<br>
+                        <input type="radio" name="drink" value="0"> Sumo<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destes desportos praticas ou praticaste?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="sport" value="5"> Pólo aquático<br>
+                        <input type="radio" name="sport" value="5"> Rugby<br>
+                        <input type="radio" name="sport" value="5"> Vela<br>
+                        <input type="radio" name="sport" value="3"> Ténis<br>
+                        <input type="radio" name="sport" value="1"> Futebol<br>
+                        <input type="radio" name="sport" value="0"> Nenhum<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destas marcas tens no teu guarda-roupa?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="brand" value="5"> Ralph Lauren<br>
+                        <input type="radio" name="brand" value="5"> Tommy Hilfiger<br>
+                        <input type="radio" name="brand" value="5"> Lacoste<br>
+                        <input type="radio" name="brand" value="3"> Zara<br>
+                        <input type="radio" name="brand" value="1"> H&M<br>
+                        <input type="radio" name="brand" value="0"> Primark<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual o teu calçado de eleição no dia-a-dia?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="shoes" value="5"> Boat shoes<br>
+                        <input type="radio" name="shoes" value="5"> Mocassins<br>
+                        <input type="radio" name="shoes" value="3"> All Stars<br>
+                        <input type="radio" name="shoes" value="1"> Ténis desportivos<br>
+                        <input type="radio" name="shoes" value="0"> Sandálias<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Onde costumas ir à noite?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="night" value="5"> Lux<br>
+                        <input type="radio" name="night" value="5"> Kremlin<br>
+                        <input type="radio" name="night" value="3"> Incógnito<br>
+                        <input type="radio" name="night" value="1"> Bairro Alto<br>
+                        <input type="radio" name="night" value="0"> Fico em casa<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destas expressões usas frequentemente?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="expression" value="5"> "Isso é tão bacano!"<br>
+                        <input type="radio" name="expression" value="5"> "Vamos dar um salto à praia?"<br>
+                        <input type="radio" name="expression" value="5"> "Que fixe!"<br>
+                        <input type="radio" name="expression" value="0"> Nenhuma destas<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual o teu tipo de telemóvel?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="phone" value="5"> iPhone (último modelo)<br>
+                        <input type="radio" name="phone" value="3"> iPhone (modelo antigo)<br>
+                        <input type="radio" name="phone" value="1"> Samsung<br>
+                        <input type="radio" name="phone" value="0"> Outro<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>O que costumas comer ao pequeno-almoço?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="breakfast" value="5"> Torradas com abacate<br>
+                        <input type="radio" name="breakfast" value="5"> Granola com iogurte grego<br>
+                        <input type="radio" name="breakfast" value="3"> Cereais<br>
+                        <input type="radio" name="breakfast" value="0"> Pão com manteiga<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destas atividades fazes nos tempos livres?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="hobby" value="5"> Golfe<br>
+                        <input type="radio" name="hobby" value="5"> Vela<br>
+                        <input type="radio" name="hobby" value="3"> Ténis<br>
+                        <input type="radio" name="hobby" value="1"> Ginásio<br>
+                        <input type="radio" name="hobby" value="0"> Videojogos<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destas universidades frequentas ou gostarias de frequentar?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="university" value="5"> Católica<br>
+                        <input type="radio" name="university" value="5"> Nova SBE<br>
+                        <input type="radio" name="university" value="3"> ISCTE<br>
+                        <input type="radio" name="university" value="1"> Universidade de Lisboa<br>
+                        <input type="radio" name="university" value="0"> Outra<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Costumas ir a festas académicas?
+                    <br><br>
+                    <input type="radio" name="parties" value="5"> Sim, todas!<br>
+                    <input type="radio" name="parties" value="3"> Algumas<br>
+                    <input type="radio" name="parties" value="0"> Não<br>
+                </li>
+                <br>
+                <br>
+                <li>Qual destas redes sociais usas mais?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="social" value="5"> LinkedIn<br>
+                        <input type="radio" name="social" value="3"> Instagram<br>
+                        <input type="radio" name="social" value="1"> Facebook<br>
+                        <input type="radio" name="social" value="0"> TikTok<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual o teu estilo musical preferido?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="music" value="5"> Jazz<br>
+                        <input type="radio" name="music" value="5"> Indie<br>
+                        <input type="radio" name="music" value="3"> Pop<br>
+                        <input type="radio" name="music" value="1"> Rock<br>
+                        <input type="radio" name="music" value="0"> Hip-hop<br>
+                    </div>
+                </li>
+                <br>
+                <br>
+                <li>Qual destes carros gostarias de ter?
+                    <br>
+                    <div><br>
+                        <input type="radio" name="car" value="5"> BMW Série 3<br>
+                        <input type="radio" name="car" value="5"> Mercedes Classe A<br>
+                        <input type="radio" name="car" value="3"> Audi A3<br>
+                        <input type="radio" name="car" value="1"> Volkswagen Golf<br>
+                        <input type="radio" name="car" value="0"> Renault Clio<br>
+                    </div>
+                </li>
+                <br>
+            </ol>
+
+            <button class="button" id="submit">Calcula a minha pontuação!</button>
+            <button class="button" id="reset">Limpar respostas</button>
+        </div> <!-- id = toHide -->
+
+        <div id="toShow">
+            <h2>A tua pontuação:</h2>
+            <h1 id="score"></h1>
+            <p>Obrigado pela tua participação!</p>
+        </div> <!-- id = toShow -->
+    </div> <!-- container -->
+        
+    <script>
+        // Initially hides results
+        $("#toShow").hide();
+
+        // Function to calculate the score
+        function calculateScore() {
+            var score = 0;
+
+            // Add points for each question
+            score += parseInt($('input[name="nameList"]:checked').val() || 0);
+            score += parseInt($('input[name="surnames"]:checked').val() || 0);
+            score += parseInt($('input[name="neighborhood"]:checked').val() || 0);
+            score += parseInt($('input[name="school"]:checked').val() || 0);
+            score += parseInt($('input[name="transport"]:checked').val() || 0);
+            score += parseInt($('input[name="vacation"]:checked').val() || 0);
+            score += parseInt($('input[name="drink"]:checked').val() || 0);
+            score += parseInt($('input[name="sport"]:checked').val() || 0);
+            score += parseInt($('input[name="brand"]:checked').val() || 0);
+            score += parseInt($('input[name="shoes"]:checked').val() || 0);
+            score += parseInt($('input[name="night"]:checked').val() || 0);
+            score += parseInt($('input[name="expression"]:checked').val() || 0);
+            score += parseInt($('input[name="phone"]:checked').val() || 0);
+            score += parseInt($('input[name="breakfast"]:checked').val() || 0);
+            score += parseInt($('input[name="hobby"]:checked').val() || 0);
+            score += parseInt($('input[name="university"]:checked').val() || 0);
+            score += parseInt($('input[name="parties"]:checked').val() || 0);
+            score += parseInt($('input[name="social"]:checked').val() || 0);
+            score += parseInt($('input[name="music"]:checked').val() || 0);
+            score += parseInt($('input[name="car"]:checked').val() || 0);
+
+            return score;
+        }
+
+        // On click of the submit button: 
+        $('#submit').click(function() {
+            // Calculates score
+            var score = calculateScore();
+
+            // Shows the score in the h1
+            $('#score').html(score);
+            
+            // Shows the score and hides the checks
+            $("#toShow").show();
+            $("#toHide").hide();
+        });
+        
+        // On click of the reset button: 
+        $('#reset').click(function() {
+            $('input[type="text"]').val('');
+            $('input[type="radio"]').prop('checked', false);
+        });
+    </script>
+</body>
+</html>
