@@ -1,256 +1,424 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Pesquisar Filmes</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root{
+            --bg:#0b0b0b;
+            --panel:#121212;
+            --muted:#9aa0a6;
+            --accent:#e50914;
+            --card:#141414;
+            --glass: rgba(255,255,255,0.03);
         }
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #121212;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        h2 {
-            font-size: 2em;
-            margin-bottom: 20px;
-            color: #e50914;
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #050506 0%, #0b0b0b 100%);
+            color:#e6e6e6;
+            display:flex;
+            align-items:flex-start;
+            justify-content:center;
+            padding:36px;
+            gap:28px;
         }
 
-        p {
-            font-size: 1em;
-            margin-bottom: 30px;
-            color: #aaa;
+        .container{
+            width:100%;
+            max-width:1200px;
         }
 
-        .input-group {
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        header{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap:16px;
+            margin-bottom:20px;
         }
 
-        label {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            color: #ccc;
+        .brand{
+            display:flex;
+            align-items:center;
+            gap:14px;
         }
 
-        input {
-            padding: 10px;
-            margin-bottom: 10px;
-            width: 100%;
-            max-width: 250px;
-            border: 1px solid #333;
-            background-color: #333;
-            color: white;
-            font-size: 1em;
-            border-radius: 5px;
+        .logo{
+            width:54px;
+            height:54px;
+            border-radius:8px;
+            background:linear-gradient(135deg,var(--accent),#b20710);
+            display:flex;align-items:center;justify-content:center;
+            font-weight:700;color:white;font-size:20px;
+            box-shadow:0 6px 18px rgba(233,9,20,0.18), inset 0 -6px 12px rgba(0,0,0,0.2);
         }
 
-        input::placeholder {
-            color: #888;
+        h1{
+            font-size:1.4rem;
+            color:var(--accent);
+            letter-spacing:0.4px;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #e50914;
-            color: white;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+        p.lead{ color:var(--muted); font-size:0.95rem; margin-top:6px }
+
+        /* busca */
+        .search-area{
+            display:flex;
+            gap:12px;
+            align-items:center;
+            background:var(--panel);
+            padding:12px;
+            border-radius:12px;
+            box-shadow: 0 6px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
         }
 
-        button:hover {
-            background-color: #b20710;
+        .search-input{
+            display:flex;
+            gap:10px;
+            align-items:center;
         }
 
-        .footer {
-            margin-top: 50px;
-            color: #aaa;
-            font-size: 0.8em;
+        input#pesquisa{
+            background:transparent;
+            border:1px solid rgba(255,255,255,0.04);
+            padding:10px 14px;
+            color:inherit;
+            width:360px;
+            max-width:60vw;
+            border-radius:8px;
+            outline:none;
+            font-size:1rem;
+            transition:box-shadow .15s, border-color .15s;
+        }
+        input#pesquisa:focus{
+            box-shadow:0 6px 18px rgba(0,0,0,0.6), 0 0 0 4px rgba(233,9,20,0.06);
+            border-color: rgba(233,9,20,0.8);
         }
 
+        button.primary{
+            background:var(--accent);
+            color:white;
+            padding:10px 14px;
+            border-radius:8px;
+            border:none;
+            cursor:pointer;
+            font-weight:600;
+            transition: transform .08s ease, filter .12s;
+        }
+        button.primary:hover{ transform: translateY(-2px); filter:brightness(.98) }
+
+        /* secondary / hidden controls */
+        details.more{
+            margin-left:8px;
+        }
+        summary.more-summary{
+            list-style:none;
+            cursor:pointer;
+            color:var(--muted);
+            padding:8px 10px;
+            border-radius:8px;
+            background:transparent;
+            border:1px solid rgba(255,255,255,0.02);
+            font-size:0.95rem;
+        }
+        details[open] > summary.more-summary{
+            color:var(--accent);
+            box-shadow:0 6px 18px rgba(0,0,0,0.55);
+            border-color: rgba(233,9,20,0.06);
+        }
+        .more-content{
+            margin-top:10px;
+            display:flex;
+            gap:10px;
+            flex-wrap:wrap;
+        }
+        .more-content button{
+            background:transparent;
+            color:var(--muted);
+            border:1px solid rgba(255,255,255,0.04);
+            padding:8px 10px;
+            border-radius:8px;
+            font-size:0.9rem;
+            cursor:pointer;
+        }
+        .more-content button:hover{ color:white; border-color: rgba(255,255,255,0.06) }
+
+        /* resultados principal */
         #resultado {
-            margin-top: 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 720px;
+            margin-top:18px;
+            width:100%;
+            max-width:1200px;
         }
 
-        #resultado a {
-            color: #e50914;
-            text-decoration: none;
+        .results-grid{
+            display:grid;
+            grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+            gap:16px;
+            align-items:start;
         }
 
-        #resultado a:hover {
-            text-decoration: underline;
+        .card{
+            background:linear-gradient(180deg,var(--card), rgba(20,20,20,0.8));
+            border-radius:12px;
+            padding:12px;
+            display:flex;
+            gap:12px;
+            align-items:flex-start;
+            transition: transform .18s cubic-bezier(.2,.9,.3,1), box-shadow .18s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            min-height:140px;
+        }
+        .card:hover{
+            transform: translateY(-6px);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.7);
         }
 
-        .back-button {
-            margin-top: 20px;
+        .poster{
+            width:110px;
+            height:165px;
+            object-fit:cover;
+            border-radius:8px;
+            flex-shrink:0;
+            background:#222;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.55);
         }
 
-        .card {
-            background: #1e1e1e;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 6px;
-            display: flex;
-            gap: 12px;
-            align-items: center;
+        .meta{ display:flex; flex-direction:column; gap:8px; width:100% }
+        .meta h4{ font-size:1.05rem; color:#fff; margin-bottom:2px }
+        .meta p{ color:var(--muted); font-size:0.9rem }
+
+        .links{ margin-top:auto; display:flex; gap:12px; align-items:center }
+        .links a{
+            color:var(--accent);
+            text-decoration:none;
+            font-weight:600;
+            background:transparent;
+            padding:8px 10px;
+            border-radius:8px;
+        }
+        .links a.secondary{
+            color:var(--muted);
+            font-weight:500;
+            border:1px solid rgba(255,255,255,0.03);
+            padding:8px 10px;
+            border-radius:8px;
         }
 
-        .poster {
-            width: 60px;
-            height: 90px;
-            object-fit: cover;
-            border-radius: 4px;
-            background: #333;
-        }
+        /* small info footer inside results */
+        .info-muted{ color:var(--muted); font-size:0.9rem; margin-top:12px }
 
-        .meta {
-            text-align: left;
-            flex: 1;
-        }
-
-        .meta h4 {
-            margin-bottom: 6px;
-            font-size: 1rem;
-        }
-
-        .meta p {
-            margin-bottom: 4px;
-            color: #bbb;
-            font-size: 0.9rem;
+        /* responsive tweaks */
+        @media (max-width:720px){
+            .search-area{flex-direction:column;align-items:stretch}
+            input#pesquisa{width:100%}
+            .brand h1{ display:none }
+            .poster{ width:92px;height:136px }
         }
     </style>
 </head>
 <body>
-    <h2>Pesquisar Filmes</h2>
-    <p>Digite o nome do filme que deseja assistir</p>
-    
-    <label for="pesquisa">Pesquisar:</label>
-    <input type="text" id="pesquisa" placeholder="Digite o nome do filme">
-    <button onclick="pesquisar()">Buscar</button> <br>
+    <div class="container">
+        <header>
+            <div class="brand">
+                <div class="logo">MV</div>
+                <div>
+                    <h1>Pesquisar Filmes</h1>
+                    <p class="lead">Encontre filmes pelo título e abra pelo IMDb ou pela sua página de servidores</p>
+                </div>
+            </div>
 
-    <br>
+            <div class="search-area" role="search" aria-label="Pesquisar filmes">
+                <div class="search-input">
+                    <label for="pesquisa" class="sr-only" style="position:absolute;left:-9999px">Pesquisar</label>
+                    <input type="text" id="pesquisa" placeholder="Ex: The Matrix, O Poderoso Chefão..." />
+                </div>
 
-    <button onclick="window.location.href='chunga.html';">Chunga</button>
+                <button class="primary" onclick="pesquisar()">Buscar</button>
 
-    <br>
+                <details class="more" aria-haspopup="true">
+                    <summary class="more-summary">Mais ▾</summary>
+                    <div class="more-content" role="group" aria-label="Opções secundárias">
+                        <button onclick="window.location.href='chunga.html';">Chunga</button>
+                        <button onclick="window.location.href='triflip.html';">Canais</button>
+                        <button onclick="window.location.href='pac.html';">pacman</button>
+                        <button onclick="window.location.href='beto.html';">rickokkkkyyy</button>
+                        <button onclick="window.location.href='beto.html';">betolanda</button>
+                    </div>
+                </details>
+            </div>
+        </header>
 
-    <button onclick="window.location.href='triflip.html';">Canais</button>
+        <main id="resultado">
+            <!-- resultados aparecerão aqui em grid -->
+            <div class="results-grid" id="results-grid"></div>
+            <p class="info-muted" id="results-info" style="display:none"></p>
+        </main>
 
-    <br>
-
-    <button onclick="window.location.href='pac.html';">pacman</button>
-
-    <br>
-
-    <button onclick="window.location.href='beto.html';">rickokkkkyyy</button>
-
-    <br>
-
-    <button onclick="window.location.href='beto.html';">betolanda</button>
-
-    <br>
-    
-    <div id="resultado"></div>
-    
-    <button class="back-button" onclick="window.history.back()">Voltar</button>
+        <div style="margin-top:18px">
+            <button class="primary" style="background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--muted)" onclick="window.history.back()">Voltar</button>
+        </div>
+    </div>
 
     <script>
         // OMDb API key (for uso local/servidor)
         const OMDB_API_KEY = '1d845897';
 
+        let currentQuery = "";
+        let currentPage = 1;
+        let totalResults = 0;
+        const RESULTS_PER_PAGE = 10;
+        const MAX_PAGES = 10; // limite para evitar fetchs infinitos (ajuste se quiser)
+
         async function pesquisar() {
             const pesquisa = document.getElementById("pesquisa").value.trim();
-            const resultado = document.getElementById("resultado");
-            resultado.innerHTML = "";
-
+            const grid = document.getElementById("results-grid");
+            const info = document.getElementById("results-info");
             if (!pesquisa) {
-                resultado.innerHTML = "<p>Por favor, digite um termo de pesquisa.</p>";
+                grid.innerHTML = "<p style='color:var(--muted)'>Por favor, digite um termo de pesquisa.</p>";
+                info.style.display = "none";
                 return;
             }
 
-            resultado.innerHTML = "<p>Buscando...</p>";
+            // reinicia estado
+            currentQuery = pesquisa;
+            currentPage = 1;
+            totalResults = 0;
+            grid.innerHTML = "<p style='color:var(--muted)'>Buscando...</p>";
+            info.style.display = "none";
+
+            await fetchPage(currentPage);
+        }
+
+        async function fetchPage(page) {
+            const grid = document.getElementById("results-grid");
+            const info = document.getElementById("results-info");
+            // desativa busca enquanto carrega
+            const searchBtn = document.querySelector('button.primary[onclick="pesquisar()"]');
+            if (searchBtn) searchBtn.disabled = true;
 
             try {
-                // Pesquisa por título (retorna vários resultados)
-                const resp = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(pesquisa)}&type=movie`);
+                const resp = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_KEY}&s=${encodeURIComponent(currentQuery)}&type=movie&page=${page}`);
                 const data = await resp.json();
 
-                if (data.Response === "True" && Array.isArray(data.Search) && data.Search.length > 0) {
-                    resultado.innerHTML = "";
+                if (data.Response === "True" && Array.isArray(data.Search)) {
+                    // se for a primeira página, limpa
+                    if (page === 1) grid.innerHTML = "";
+
+                    // mostra resultados
                     data.Search.forEach(item => {
-                        const title = item.Title || "Título desconhecido";
-                        const year = item.Year || "";
-                        const imdbID = item.imdbID;
-                        const poster = (item.Poster && item.Poster !== "N/A") ? item.Poster : "";
-
-                        const card = document.createElement("div");
-                        card.className = "card";
-
-                        const img = document.createElement("img");
-                        img.className = "poster";
-                        img.src = poster || "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='90'%3E%3Crect width='100%25' height='100%25' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' fill='%23aaa' font-size='10' font-family='Arial' text-anchor='middle' dy='.3em'%3Esem poster%3C/text%3E%3C/svg%3E";
-                        img.alt = title;
-
-                        const meta = document.createElement("div");
-                        meta.className = "meta";
-
-                        const h4 = document.createElement("h4");
-                        h4.textContent = `${title} (${year})`;
-
-                        const pLinks = document.createElement("p");
-                        // Link interno para sua página de servidores com imdbID
-                        const assistirLink = document.createElement("a");
-                        assistirLink.href = `serversfilmes.html?filme=${encodeURIComponent(imdbID)}`;
-                        assistirLink.textContent = "Assistir";
-                        assistirLink.style.marginRight = "12px";
-
-                        // Link direto para IMDb
-                        const imdbLink = document.createElement("a");
-                        imdbLink.href = `https://www.imdb.com/title/${encodeURIComponent(imdbID)}/`;
-                        imdbLink.target = "_blank";
-                        imdbLink.rel = "noopener noreferrer";
-                        imdbLink.textContent = "IMDb";
-
-                        pLinks.appendChild(assistirLink);
-                        pLinks.appendChild(imdbLink);
-
-                        meta.appendChild(h4);
-                        meta.appendChild(pLinks);
-
-                        card.appendChild(img);
-                        card.appendChild(meta);
-
-                        resultado.appendChild(card);
+                        grid.appendChild(createCard(item));
                     });
+
+                    // atualiza contadores
+                    totalResults = parseInt(data.totalResults, 10) || 0;
+                    currentPage = page;
+
+                    // controla botão "Carregar mais"
+                    const shown = currentPage * RESULTS_PER_PAGE;
+                    removeLoadMoreButton();
+                    if (shown < totalResults && currentPage < MAX_PAGES) {
+                        appendLoadMoreButton();
+                        info.style.display = "block";
+                        info.textContent = `Mostrando ${Math.min(shown, totalResults)} de ${totalResults} resultados.`;
+                    } else {
+                        info.style.display = "block";
+                        info.textContent = `Mostrando ${Math.min(shown, totalResults)} de ${totalResults} resultados.`;
+                    }
                 } else {
-                    resultado.innerHTML = `<p>Nenhum filme encontrado. ${data.Error ? '- ' + data.Error : ''}</p>`;
+                    // limpa botão e mostra erro/nenhum
+                    removeLoadMoreButton();
+                    grid.innerHTML = `<p style="color:var(--muted)">Nenhum filme encontrado. ${data.Error ? '- ' + data.Error : ''}</p>`;
+                    info.style.display = "none";
                 }
             } catch (err) {
                 console.error(err);
-                resultado.innerHTML = "<p>Erro ao consultar a API. Verifique sua conexão ou a chave da API.</p>";
+                grid.innerHTML = "<p style='color:var(--muted)'>Erro ao consultar a API. Verifique sua conexão ou a chave da API.</p>";
+                info.style.display = "none";
+            } finally {
+                if (searchBtn) searchBtn.disabled = false;
             }
         }
 
-        // Funções mantidas (se usadas em outras páginas). Ajuste ou remova conforme necessário.
+        function createCard(item) {
+            const title = item.Title || "Título desconhecido";
+            const year = item.Year || "";
+            const imdbID = item.imdbID;
+            const poster = (item.Poster && item.Poster !== "N/A") ? item.Poster : "";
+
+            const card = document.createElement("div");
+            card.className = "card";
+
+            const img = document.createElement("img");
+            img.className = "poster";
+            img.src = poster || "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='330'%3E%3Crect width='100%25' height='100%25' fill='%23222'/%3E%3Ctext x='50%25' y='50%25' fill='%23aaa' font-size='16' font-family='Arial' text-anchor='middle' dy='.3em'%3Esem poster%3C/text%3E%3C/svg%3E";
+            img.alt = title;
+            img.loading = "lazy";
+
+            const meta = document.createElement("div");
+            meta.className = "meta";
+
+            const h4 = document.createElement("h4");
+            h4.textContent = `${title} (${year})`;
+
+            const pLinks = document.createElement("div");
+            pLinks.className = "links";
+
+            const assistirLink = document.createElement("a");
+            assistirLink.href = `serversfilmes.html?filme=${encodeURIComponent(imdbID)}`;
+            assistirLink.textContent = "Assistir";
+            assistirLink.className = "secondary";
+
+            const imdbLink = document.createElement("a");
+            imdbLink.href = `https://www.imdb.com/title/${encodeURIComponent(imdbID)}/`;
+            imdbLink.target = "_blank";
+            imdbLink.rel = "noopener noreferrer";
+            imdbLink.textContent = "IMDb";
+
+            pLinks.appendChild(assistirLink);
+            pLinks.appendChild(imdbLink);
+
+            const short = document.createElement("p");
+            short.textContent = `ID: ${imdbID}`;
+            short.style.color = "var(--muted)";
+            short.style.fontSize = "0.85rem";
+            short.style.marginTop = "6px";
+
+            meta.appendChild(h4);
+            meta.appendChild(short);
+            meta.appendChild(pLinks);
+
+            card.appendChild(img);
+            card.appendChild(meta);
+
+            return card;
+        }
+
+        function appendLoadMoreButton() {
+            const info = document.getElementById("results-info");
+            removeLoadMoreButton();
+            const btn = document.createElement("button");
+            btn.id = "load-more";
+            btn.textContent = "Carregar mais";
+            btn.onclick = async () => {
+                btn.disabled = true;
+                await fetchPage(currentPage + 1);
+                btn.disabled = false;
+            };
+            btn.style.marginTop = "12px";
+            btn.className = "primary";
+            // coloca botão abaixo do grid
+            const container = document.getElementById("resultado");
+            container.appendChild(btn);
+        }
+
+        function removeLoadMoreButton() {
+            const btn = document.getElementById("load-more");
+            if (btn) btn.remove();
+        }
+
+        // Funções mantidas (se usadas em outras páginas).
         function capturarFilmes() {
             let filmeID = document.getElementById("filmes") ? document.getElementById("filmes").value : null;
             if (filmeID) window.location.href = `serversfilmes.html?filme=${encodeURIComponent(filmeID)}`;
