@@ -5,316 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Filmes e Séries</title>
     <style>
-        :root{
-            --bg: #060607;
-            --panel: #0f1112;
-            --muted: #9aa0a6;
-            --accent: #ff3b3b;
-            --card: #121416;
-            --glass: rgba(255,255,255,0.03);
-            --radius: 12px;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: black;
         }
-
-        *{box-sizing:border-box}
-        html,body{height:100%;margin:0}
-        body{
-            font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-            background: linear-gradient(180deg,#030304 0%, #0b0c0d 100%);
-            color:#e8eaec;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            padding:28px;
+        input {
+            padding: 5px;
+            margin: 10px;
         }
-
-        .wrap{
-            width:100%;
-            max-width:1100px;
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-            border-radius: var(--radius);
-            padding:20px;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-            border: 1px solid rgba(255,255,255,0.02);
+        .container {
+            text-align: left;
+            display: grid;
+            max-width: 80px;
+            padding: 70px;
         }
-
-        header.top{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:16px;
-            margin-bottom:16px;
-        }
-        .title{
-            display:flex;
-            gap:12px;
-            align-items:center;
-        }
-        .logo{
-            width:44px;height:44px;border-radius:10px;
-            background:linear-gradient(135deg,var(--accent),#b20710);
-            display:flex;align-items:center;justify-content:center;font-weight:700;
-            box-shadow:0 6px 18px rgba(255,59,59,0.12);
-        }
-        h1{font-size:1.1rem;margin:0}
-        p.lead{margin:0;color:var(--muted);font-size:0.95rem}
-
-        .controls{
-            display:flex;
-            gap:10px;
-            align-items:center;
-        }
-        .btn{
-            background:transparent;
-            color:var(--muted);
-            border:1px solid rgba(255,255,255,0.04);
-            padding:8px 12px;
-            border-radius:10px;
-            cursor:pointer;
-            font-weight:600;
-        }
-        .btn.primary{
-            background:var(--accent);
-            color:white;
+        button {
+            padding: 5px 10px;
+            background-color: #ff3838;
+            color: white;
             border: none;
-            box-shadow: 0 6px 18px rgba(255,59,59,0.12);
+            cursor: pointer;
         }
-        .btn:hover{filter:brightness(1.05)}
-
-        main.content{
-            display:grid;
-            grid-template-columns: 380px 1fr;
-            gap:18px;
-            align-items:start;
-        }
-
-        /* left panel: servers list */
-        .panel{
-            background: linear-gradient(180deg,var(--card), rgba(255,255,255,0.02));
-            border-radius:10px;
-            padding:14px;
-            border:1px solid rgba(255,255,255,0.02);
-        }
-        .panel h3{margin:0 0 10px 0;font-size:1rem}
-        .servers-grid{
-            display:grid;
-            grid-template-columns: 1fr;
-            gap:10px;
-        }
-        .server-btn{
-            display:flex;
-            align-items:center;
-            justify-content:space-between;
-            gap:12px;
-            padding:10px 12px;
-            background:transparent;
-            border-radius:8px;
-            border:1px solid rgba(255,255,255,0.03);
-            color:var(--muted);
-            cursor:pointer;
-            transition: all .12s;
-            text-align:left;
-            font-weight:600;
-        }
-        .server-btn:hover{
-            background: rgba(255,255,255,0.02);
-            color:white;
-            transform: translateY(-2px);
-        }
-        .server-btn .name{font-weight:700;color:var(--accent)}
-        .server-meta{font-size:0.85rem;color:var(--muted)}
-
-        /* right panel: player */
-        .player{
-            background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-            border-radius:10px;
-            padding:14px;
-            display:flex;
-            flex-direction:column;
-            gap:12px;
-            min-height:200px;
-            align-items:stretch;
-            border:1px solid rgba(255,255,255,0.02);
-        }
-        .player .info{color:var(--muted);font-size:0.95rem}
-        .iframe-wrap{
-            width:100%;
-            background:#000;
-            border-radius:8px;
-            overflow:hidden;
-            position:relative;
-            aspect-ratio: 16 / 9;
-        }
-        iframe{
-            width:100%;
-            height:100%;
-            border:0;
-            display:block;
-            background:#000;
-        }
-        .placeholder{
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            color:var(--muted);
-            height:100%;
-            font-size:0.95rem;
-            padding:12px;
-        }
-
-        /* responsive */
-        @media (max-width:980px){
-            main.content{grid-template-columns: 1fr; }
-            .panel{order:2}
-            .player{order:1}
+        button:hover {
+            background-color: #e45555;
         }
     </style>
 </head>
 <body>
-    <div class="wrap" role="main">
-        <header class="top">
-            <div class="title">
-                <div class="logo">MV</div>
-                <div>
-                    <h1>Servidores — Filmes</h1>
-                    <p class="lead">Escolha um servidor para carregar o vídeo (ID do IMDb recebido) </p>
-                </div>
-            </div>
-
-            <div class="controls">
-                <button class="btn" onclick="window.location.href='index.html'">Voltar</button>
-                <button class="btn primary" id="open-external" title="Abrir no IMDb" hidden>Abrir IMDb</button>
-            </div>
-        </header>
-
-        <main class="content">
-            <aside class="panel" aria-label="Servidores disponíveis">
-                <h3>Escolha um servidor</h3>
-                <div class="servers-grid" id="servers"></div>
-            </aside>
-
-            <section class="player" aria-label="Player">
-                <div class="info" id="film-info">ID: <span id="film-id">—</span></div>
-                <div class="iframe-wrap" id="iframe-wrap">
-                    <div class="placeholder" id="placeholder">Nenhum servidor selecionado</div>
-                    <!-- iframe com sandbox por defeito para bloquear pop-ups/adware -->
-                    <iframe id="videoFrame"
-                            allow="encrypted-media; fullscreen"
-                            referrerpolicy="no-referrer"
-                            loading="lazy"
-                            sandbox="allow-scripts"
-                            src=""
-                            hidden></iframe>
-                    <!-- aviso quando iframe está em modo bloqueado -->
-                    <div id="iframe-warning" style="display:none;padding:8px;background:rgba(255,69,69,0.06);border-radius:8px;border:1px solid rgba(255,69,69,0.06);color:var(--muted);margin-top:8px;font-size:0.9rem;">
-                        Conteúdo em modo protegido — pop-ups e navegações de topo bloqueados. Se o vídeo não carregar, pode permitir temporariamente recursos adicionais.
-                        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
-                            <button id="allow-unsafe" class="btn" title="Permitir pop-ups temporariamente">Abrir sem bloqueio</button>
-                            <button id="open-external-unsafe" class="btn" style="display:none">Abrir em nova aba</button>
-                        </div>
-                    </div>
-                 </div>
-                 <div style="display:flex;gap:8px;justify-content:flex-end">
-                     <button class="btn" id="hide-btn" onclick="hidePlayer()" hidden>Fechar</button>
-                 </div>
-            </section>
-        </main>
+    <div class="container">
+        <button onclick="window.location.href='index.html';">Voltar</button>
     </div>
-
     <script>
-        // lista de templates (use {id} onde se insere o imdbID)
-        const SERVERS = [
-            {name: 'MultiEmbed', template: 'https://multiembed.mov/?video_id={id}'},
-            {name: 'AutoEmbed', template: 'https://player.autoembed.cc/embed/movie/{id}'},
-            {name: 'VidLink', template: 'https://vidlink.pro/movie/{id}'},
-            {name: 'Vidsrc (v3)', template: 'https://vidsrc.cc/v3/embed/movie/{id}'},
-            {name: 'Vidsrc ICU', template: 'https://vidsrc.icu/embed/movie/{id}'},
-            {name: 'Vidsrc.to', template: 'https://vidsrc.to/embed/movie/{id}'},
-            {name: 'Vidsrc-embed', template: 'https://vidsrc-embed.ru/embed/movie/{id}'}
-        ];
-
         let filmeID = "";
+    function obterParametrosUrl() {
+        let params = new URLSearchParams(window.location.search);
+        filmeID = params.get("filme") || "";    
+    }
 
-        function obterParametrosUrl() {
-            const params = new URLSearchParams(window.location.search);
-            filmeID = params.get("filme") || "";
-            document.getElementById('film-id').textContent = filmeID || '—';
-            const openExt = document.getElementById('open-external');
-            if (filmeID) {
-                openExt.hidden = false;
-                openExt.onclick = () => window.open(`https://www.imdb.com/title/${encodeURIComponent(filmeID)}/`, '_blank', 'noopener');
-            } else {
-                openExt.hidden = true;
-            }
-        }
+    window.onload = obterParametrosUrl;
 
-        function montarListaServers() {
-            const cont = document.getElementById('servers');
-            cont.innerHTML = '';
-            SERVERS.forEach((s, idx) => {
-                const btn = document.createElement('button');
-                btn.className = 'server-btn';
-                btn.type = 'button';
-                btn.innerHTML = `<div><div class="name">${s.name}</div><div class="server-meta">Servidor ${idx + 1}</div></div><div style="opacity:.9">▶</div>`;
-                btn.addEventListener('click', () => {
-                    if (!filmeID) return alert('ID do filme não encontrado.');
-                    const url = s.template.replace('{id}', encodeURIComponent(filmeID));
-                    abrirIframe(url);
-                });
-                cont.appendChild(btn);
-            });
-        }
-
-        function abrirIframe(url) {
-            const iframe = document.getElementById('videoFrame');
-            const placeholder = document.getElementById('placeholder');
-            const hideBtn = document.getElementById('hide-btn');
-            const warning = document.getElementById('iframe-warning');
-            const allowBtn = document.getElementById('allow-unsafe');
-            const openUnsafe = document.getElementById('open-external-unsafe');
-
-            // modo seguro por defeito (sandbox restrito) — isto bloqueia pop-ups/ads
-            iframe.setAttribute('sandbox', 'allow-scripts');
+    function abrirIframe(url) {
+            let iframe = document.getElementById("videoFrame");
             iframe.src = url;
             iframe.hidden = false;
-            placeholder.style.display = 'none';
-            hideBtn.hidden = false;
-            warning.style.display = 'block';
-            document.getElementById('open-external').hidden = false;
-            openUnsafe.style.display = 'inline-block';
+        }
 
-            // ação para permitir pop-ups / navegação caso o servidor precise (opção manual)
-            allowBtn.onclick = () => {
-                // permissões amplas — pode permitir pop-ups/redirects (unsafe)
-                iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-top-navigation');
-                // reload para aplicar permissões
-                iframe.src = url;
-                warning.style.display = 'none';
-            };
-
-            // abrir em nova aba (alternativa segura para evitar popups dentro do site)
-            openUnsafe.onclick = () => window.open(url, '_blank', 'noopener');
-         }
- 
-         function hidePlayer(){
-            const iframe = document.getElementById('videoFrame');
-            const placeholder = document.getElementById('placeholder');
-            const hideBtn = document.getElementById('hide-btn');
-            const warning = document.getElementById('iframe-warning');
-            const openUnsafe = document.getElementById('open-external-unsafe');
-            iframe.src = '';
-            // restaura modo seguro
-            iframe.setAttribute('sandbox', 'allow-scripts');
-            iframe.hidden = true;
-            placeholder.style.display = 'flex';
-            hideBtn.hidden = true;
-            warning.style.display = 'none';
-            openUnsafe.style.display = 'none';
-         }
-
-        window.addEventListener('load', () => {
-            obterParametrosUrl();
-            montarListaServers();
-        });
     </script>
+
+<h3>Escolha um servidor:</h3>
+<div id="servers">
+        <button onclick="abrirIframe(`https://https://multiembed.mov/?video_id=${filmeID}`)">Server 1</button>
+        <button onclick="abrirIframe(`https://player.autoembed.cc/embed/movie/${filmeID}`)">Server 2</button>
+        <button onclick="abrirIframe(`https://vidlink.pro/movie/${filmeID}`)">Server 3</button>
+        <button onclick="abrirIframe(`https://vidsrc.cc/v3/embed/movie/${filmeID}`)">Server 4</button> <!-- ha versao 2 -->
+        <button onclick="abrirIframe(`https://vidsrc.icu/embed/movie/${filmeID}`)">Server 5</button>
+        <button onclick="abrirIframe(`https://vidsrc.to/embed/movie/${filmeID}`)">Server 6</button>
+        <button onclick="abrirIframe(`https://vidsrc-embed.ru/embed/movie/${filmeID}`)">Server 7</button>
+</div>
+<iframe id="videoFrame" allow='encrypted-media' width='640' height='360' marginwidth='0' marginheight='0' scrolling='no' frameborder='0' allowfullscreen='yes' src=''></iframe>
 </body>
 </html>
