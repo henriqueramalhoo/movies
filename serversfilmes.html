@@ -196,26 +196,11 @@
                 <div class="info" id="film-info">ID: <span id="film-id">—</span></div>
                 <div class="iframe-wrap" id="iframe-wrap">
                     <div class="placeholder" id="placeholder">Nenhum servidor selecionado</div>
-                    <!-- iframe com sandbox por defeito para bloquear pop-ups/adware -->
-                    <iframe id="videoFrame"
-                            allow="encrypted-media; fullscreen"
-                            referrerpolicy="no-referrer"
-                            loading="lazy"
-                            sandbox="allow-scripts"
-                            src=""
-                            hidden></iframe>
-                    <!-- aviso quando iframe está em modo bloqueado -->
-                    <div id="iframe-warning" style="display:none;padding:8px;background:rgba(255,69,69,0.06);border-radius:8px;border:1px solid rgba(255,69,69,0.06);color:var(--muted);margin-top:8px;font-size:0.9rem;">
-                        Conteúdo em modo protegido — pop-ups e navegações de topo bloqueados. Se o vídeo não carregar, pode permitir temporariamente recursos adicionais.
-                        <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
-                            <button id="allow-unsafe" class="btn" title="Permitir pop-ups temporariamente">Abrir sem bloqueio</button>
-                            <button id="open-external-unsafe" class="btn" style="display:none">Abrir em nova aba</button>
-                        </div>
-                    </div>
-                 </div>
-                 <div style="display:flex;gap:8px;justify-content:flex-end">
-                     <button class="btn" id="hide-btn" onclick="hidePlayer()" hidden>Fechar</button>
-                 </div>
+                    <iframe id="videoFrame" allow="encrypted-media; fullscreen" src="" hidden></iframe>
+                </div>
+                <div style="display:flex;gap:8px;justify-content:flex-end">
+                    <button class="btn" id="hide-btn" onclick="hidePlayer()" hidden>Fechar</button>
+                </div>
             </section>
         </main>
     </div>
@@ -268,48 +253,22 @@
             const iframe = document.getElementById('videoFrame');
             const placeholder = document.getElementById('placeholder');
             const hideBtn = document.getElementById('hide-btn');
-            const warning = document.getElementById('iframe-warning');
-            const allowBtn = document.getElementById('allow-unsafe');
-            const openUnsafe = document.getElementById('open-external-unsafe');
-
-            // modo seguro por defeito (sandbox restrito) — isto bloqueia pop-ups/ads
-            iframe.setAttribute('sandbox', 'allow-scripts');
             iframe.src = url;
             iframe.hidden = false;
             placeholder.style.display = 'none';
             hideBtn.hidden = false;
-            warning.style.display = 'block';
             document.getElementById('open-external').hidden = false;
-            openUnsafe.style.display = 'inline-block';
+        }
 
-            // ação para permitir pop-ups / navegação caso o servidor precise (opção manual)
-            allowBtn.onclick = () => {
-                // permissões amplas — pode permitir pop-ups/redirects (unsafe)
-                iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-top-navigation');
-                // reload para aplicar permissões
-                iframe.src = url;
-                warning.style.display = 'none';
-            };
-
-            // abrir em nova aba (alternativa segura para evitar popups dentro do site)
-            openUnsafe.onclick = () => window.open(url, '_blank', 'noopener');
-         }
- 
-         function hidePlayer(){
+        function hidePlayer(){
             const iframe = document.getElementById('videoFrame');
             const placeholder = document.getElementById('placeholder');
             const hideBtn = document.getElementById('hide-btn');
-            const warning = document.getElementById('iframe-warning');
-            const openUnsafe = document.getElementById('open-external-unsafe');
             iframe.src = '';
-            // restaura modo seguro
-            iframe.setAttribute('sandbox', 'allow-scripts');
             iframe.hidden = true;
             placeholder.style.display = 'flex';
             hideBtn.hidden = true;
-            warning.style.display = 'none';
-            openUnsafe.style.display = 'none';
-         }
+        }
 
         window.addEventListener('load', () => {
             obterParametrosUrl();
